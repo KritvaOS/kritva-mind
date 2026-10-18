@@ -15,8 +15,9 @@ Kritva Mind owns: the Mind request, context and result contract: inputs, context
 
 ## 3. Commits and pull requests
 
-- Commit header: `type(scope): summary` (feat, fix, docs, refactor, test, build, ci, chore, perf, revert), at most 72 characters.
-- Exactly one footer `Task: KOS-MIND-NNN`. Check with `python3 scripts/security/check_commit_format.py --range origin/main..HEAD`.
+- Commit header: `type(scope): summary` (feat, fix, docs, refactor, test, build, ci, chore, perf, revert, security), at most 90 characters; an optional `[KOS-MIND-NNN]` suffix must match the footer.
+- Exactly one footer line, `Task: KOS-MIND-NNN` or `Tasks: KOS-MIND-NNN, KOS-MIND-NNN`; a docs or chore commit that implements no task uses `Tasks: None (reason)`. Check with `python3 scripts/security/check_commit_format.py --range origin/main..HEAD`.
+- Merge method is a merge commit (kritva-program D-053). PRs use `.github/PULL_REQUEST_TEMPLATE.md`.
 - Never add a `Claude-Session:` trailer or a claude.ai session link to a commit. `commit-message-check` blocks them.
 - Open a PR; do not push to `main`. Required checks: secret-scan, commit-message-check.
 
