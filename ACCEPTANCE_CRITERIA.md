@@ -21,6 +21,9 @@ kritva-core (approved contract), kritva-sense (versioned Sense contract). Exact 
 | AC-003 | Cancellation is specified and tested, including partial results. | cancellation tests |
 | AC-004 | Validation is deterministic: the same input and context give the same validation outcome. | determinism tests |
 | AC-005 | Mind consumes Sense only through the versioned Sense contract, never its internals. | dependency review |
+| AC-006 | [ARCHITECTURE.md](ARCHITECTURE.md) is reviewed and states subsystem responsibilities, data flow and the open decisions it leaves; it is not an accepted baseline until the owner approves it. | architecture review |
+| AC-007 | The result is a proposal: the contract has no field that commands an actuator, and execution authority is stated to belong to Skill. The Mind-to-Skill interaction is reviewed with kritva-skill. | contract review, cross-repository review |
+| AC-008 | Context identity has a defined lifecycle (create, update, expire), and a result carries the context identity and provenance of its inputs. | schema tests, contract review |
 
 ## 4. Interface and API compatibility
 
