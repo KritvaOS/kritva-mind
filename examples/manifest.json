@@ -8,7 +8,10 @@
     "result-partial.json": "result",
     "result-cancelled.json": "result",
     "result-failed-provider-unavailable.json": "result",
-    "result-replay-unavailable.json": "result"
+    "result-replay-unavailable.json": "result",
+    "context-with-observations.json": "context",
+    "request-with-freshness.json": "request",
+    "result-partial-stale-input.json": "result"
   },
   "invalid": {
     "request-missing-context-ref.json": {
@@ -58,6 +61,22 @@
     "result-partial-attempt-only-provenance.json": {
       "schema": "result",
       "reason": "PARTIAL needs the full execution record"
+    },
+    "context-stale-observation-marked-usable.json": {
+      "schema": "context",
+      "reason": "a STALE, MISSING or INVALID observation must have usable false"
+    },
+    "context-observation-no-clock.json": {
+      "schema": "context",
+      "reason": "an observation reference carries its clock"
+    },
+    "request-freshness-now-without-clock.json": {
+      "schema": "request",
+      "reason": "now_ns needs the clock it came from"
+    },
+    "result-sense-error-code-as-mind-code.json": {
+      "schema": "result",
+      "reason": "a Sense code is not a Mind code; it goes in detail.sense_error_code"
     }
   }
 }

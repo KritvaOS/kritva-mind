@@ -16,6 +16,9 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-cancelled.json](valid/result-cancelled.json) | result |
 | [result-failed-provider-unavailable.json](valid/result-failed-provider-unavailable.json) | result |
 | [result-replay-unavailable.json](valid/result-replay-unavailable.json) | result |
+| [context-with-observations.json](valid/context-with-observations.json) | context |
+| [request-with-freshness.json](valid/request-with-freshness.json) | request |
+| [result-partial-stale-input.json](valid/result-partial-stale-input.json) | result |
 
 ## Invalid
 
@@ -33,7 +36,11 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-missing-provenance.json](invalid/result-missing-provenance.json) | result | provenance is required |
 | [result-completed-without-output.json](invalid/result-completed-without-output.json) | result | COMPLETED needs the full execution record, including output |
 | [result-partial-attempt-only-provenance.json](invalid/result-partial-attempt-only-provenance.json) | result | PARTIAL needs the full execution record |
+| [context-stale-observation-marked-usable.json](invalid/context-stale-observation-marked-usable.json) | context | a STALE, MISSING or INVALID observation must have usable false |
+| [context-observation-no-clock.json](invalid/context-observation-no-clock.json) | context | an observation reference carries its clock |
+| [request-freshness-now-without-clock.json](invalid/request-freshness-now-without-clock.json) | request | now_ns needs the clock it came from |
+| [result-sense-error-code-as-mind-code.json](invalid/result-sense-error-code-as-mind-code.json) | result | a Sense code is not a Mind code; it goes in detail.sense_error_code |
 
 ## What this is not
 
-No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the provenance change). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.
+No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the observation and freshness change). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.

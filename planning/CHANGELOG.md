@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Contract 0.1.0-draft: Sense observation references (`observations[]`), a freshness policy in request constraints and a closed list of Mind error codes; three valid and four invalid examples added (Task: KOS-MIND-001). Proposals for decisions C-2 and C-3, not reviewed by Sense; nothing released.
 - Contract 0.1.0-draft: provenance requires only the replay class and input; COMPLETED and PARTIAL results require the full execution record, so FAILED and CANCELLED results no longer need invented model or output data. Two examples corrected, two invalid examples added (Task: KOS-MIND-001). Draft change; nothing was released.
 - Contract examples (valid and invalid, synthetic) and `contract/COMPATIBILITY.md` with Sense findings and Skill review questions (Task: KOS-MIND-001). Not evidence for any criterion; no validator exists.
 - Proposed contract schemas 0.1.0-draft under `contract/` and `tasks/KOS-MIND-001/TASK.md`; KOS-MIND-001 started on the owner's instruction (Task: KOS-MIND-001). Not accepted; no validator or gate exists.

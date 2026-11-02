@@ -25,78 +25,165 @@
     "ContextRef": {
       "type": "object",
       "properties": {
-        "context_id": { "$ref": "#/$defs/Id" },
-        "revision": { "type": "integer", "minimum": 1 }
+        "context_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
-      "required": ["context_id", "revision"],
+      "required": [
+        "context_id",
+        "revision"
+      ],
       "additionalProperties": false
     },
     "Reference": {
       "description": "A reference to an immutable snapshot or to a source record held elsewhere.",
       "type": "object",
       "properties": {
-        "ref": { "type": "string", "minLength": 1 },
-        "digest": { "$ref": "#/$defs/Digest" },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
         "source_contract": {
           "description": "Name and version of the contract the referenced record follows (for a Sense observation, the versioned Sense contract).",
           "type": "string"
         }
       },
-      "required": ["ref"],
+      "required": [
+        "ref"
+      ],
       "additionalProperties": false
     },
     "Uncertainty": {
       "description": "A score alone is not uncertainty: the scale, source and calibration state are stated, and qualitative notes and assumptions are allowed.",
       "type": "object",
       "properties": {
-        "score": { "type": "number" },
+        "score": {
+          "type": "number"
+        },
         "scale": {
           "description": "Meaning and range of the score, for example 'probability 0..1'.",
           "type": "string"
         },
-        "source": { "type": "string" },
-        "calibration": { "enum": ["CALIBRATED", "UNCALIBRATED", "UNKNOWN"] },
-        "notes": { "type": "string" },
-        "assumptions": { "type": "array", "items": { "type": "string" } }
+        "source": {
+          "type": "string"
+        },
+        "calibration": {
+          "enum": [
+            "CALIBRATED",
+            "UNCALIBRATED",
+            "UNKNOWN"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "dependentRequired": {
-        "score": ["scale", "source", "calibration"]
+        "score": [
+          "scale",
+          "source",
+          "calibration"
+        ]
       },
       "additionalProperties": false
     },
     "Error": {
       "type": "object",
       "properties": {
-        "code": { "type": "string", "minLength": 1 },
-        "severity": { "enum": ["ERROR", "WARNING"] },
-        "message": { "type": "string" },
-        "detail": { "type": "object" }
+        "code": {
+          "description": "Mind error codes. A Sense error code seen on an input is passed in detail.sense_error_code, never as this code.",
+          "enum": [
+            "MIND_INPUT_STALE",
+            "MIND_INPUT_MISSING",
+            "MIND_INPUT_INVALID",
+            "MIND_PROVIDER_UNAVAILABLE",
+            "MIND_TIMEOUT",
+            "MIND_CANCELLED",
+            "MIND_CONTRACT_VIOLATION"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "ERROR",
+            "WARNING"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "object"
+        }
       },
-      "required": ["code", "severity", "message"],
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
       "additionalProperties": false
     },
     "Precondition": {
       "type": "object",
       "properties": {
-        "description": { "type": "string" },
-        "expression": { "type": "object" }
+        "description": {
+          "type": "string"
+        },
+        "expression": {
+          "type": "object"
+        }
       },
-      "required": ["description"],
+      "required": [
+        "description"
+      ],
       "additionalProperties": false
     },
     "ProposedSkill": {
       "description": "A recommendation to Skill. It is not an authorization: Skill resolves the reference, validates its manifest, version and preconditions, and decides.",
       "type": "object",
       "properties": {
-        "skill_id": { "$ref": "#/$defs/Id" },
-        "version_constraint": { "type": "string" },
-        "parameters": { "type": "object" },
-        "preconditions": { "type": "array", "items": { "$ref": "#/$defs/Precondition" } },
-        "rationale": { "type": "string" },
-        "priority": { "type": "integer", "minimum": 0 },
-        "uncertainty": { "$ref": "#/$defs/Uncertainty" }
+        "skill_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "version_constraint": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Precondition"
+          }
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/Uncertainty"
+        }
       },
-      "required": ["skill_id", "parameters"],
+      "required": [
+        "skill_id",
+        "parameters"
+      ],
       "additionalProperties": false
     },
     "ExecutionRecord": {
@@ -104,26 +191,172 @@
       "type": "object",
       "properties": {
         "replay_class": {
-          "enum": ["EXACT_REPLAY_SUPPORTED", "CONDITION_REPLAY_ONLY", "REPLAY_UNAVAILABLE"]
+          "enum": [
+            "EXACT_REPLAY_SUPPORTED",
+            "CONDITION_REPLAY_ONLY",
+            "REPLAY_UNAVAILABLE"
+          ]
         },
-        "input": { "$ref": "#/$defs/Reference" },
-        "context_snapshot": { "$ref": "#/$defs/Reference" },
-        "provider_id": { "type": "string", "minLength": 1 },
-        "model_id": { "type": "string", "minLength": 1 },
-        "model_version": { "type": "string" },
-        "provider_config_digest": { "$ref": "#/$defs/Digest" },
-        "prompt_template_digest": { "$ref": "#/$defs/Digest" },
-        "inference_parameters": { "type": "object" },
-        "random_seed": { "type": "integer" },
-        "output": { "$ref": "#/$defs/Reference" },
-        "executed_at": { "$ref": "#/$defs/Timestamp" },
-        "duration_ms": { "type": "integer", "minimum": 0 },
+        "input": {
+          "$ref": "#/$defs/Reference"
+        },
+        "context_snapshot": {
+          "$ref": "#/$defs/Reference"
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "provider_config_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "prompt_template_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "inference_parameters": {
+          "type": "object"
+        },
+        "random_seed": {
+          "type": "integer"
+        },
+        "output": {
+          "$ref": "#/$defs/Reference"
+        },
+        "executed_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
         "tool_versions": {
           "type": "object",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
-      "required": ["replay_class", "input"],
+      "required": [
+        "replay_class",
+        "input"
+      ],
+      "additionalProperties": false
+    },
+    "ObservationRef": {
+      "description": "A reference to one Sense sample, by identity and clock, never by embedding Sense internals. The measurements of a STALE, MISSING or INVALID sample are not usable as readings (Sense contract section 6), so usable must be false for them. Clocks are not comparable across monotonic and utc.",
+      "type": "object",
+      "properties": {
+        "sensor_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,31}(\\.[a-z0-9_]{1,32}){0,3}$"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "clock": {
+          "enum": [
+            "monotonic",
+            "utc"
+          ]
+        },
+        "timestamp_ns": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validity": {
+          "enum": [
+            "VALID",
+            "STALE",
+            "MISSING",
+            "INVALID"
+          ]
+        },
+        "usable": {
+          "description": "Mind's own freshness and validity decision for this observation.",
+          "type": "boolean"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "source_contract": {
+          "description": "Sense contract version the sample follows, for example 0.1.0.",
+          "$ref": "#/$defs/ContractVersion"
+        }
+      },
+      "required": [
+        "sensor_id",
+        "sequence",
+        "clock",
+        "timestamp_ns",
+        "validity",
+        "usable",
+        "source_contract"
+      ],
+      "if": {
+        "properties": {
+          "validity": {
+            "enum": [
+              "STALE",
+              "MISSING",
+              "INVALID"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "usable": {
+            "const": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "FreshnessPolicy": {
+      "description": "How Mind, as a consumer, judges freshness of Sense samples (Sense contract section 6.1): the maximum age in nanoseconds, with an optional per-sensor override. Freshness needs the consumer's now on the same clock as the sample; without it, freshness is not evaluated.",
+      "type": "object",
+      "properties": {
+        "max_age_ns": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "per_sensor_max_age_ns": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]{0,31}(\\.[a-z0-9_]{1,32}){0,3}$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "clock": {
+          "enum": [
+            "monotonic",
+            "utc"
+          ]
+        },
+        "now_ns": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "max_age_ns"
+      ],
+      "dependentRequired": {
+        "now_ns": [
+          "clock"
+        ]
+      },
       "additionalProperties": false
     }
   }
