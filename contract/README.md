@@ -15,7 +15,7 @@ Task: KOS-MIND-001. These JSON Schemas (JSON Schema draft 2020-12) describe the 
 - **One completeness indicator.** The draft in the architecture document had both `status` and `completeness`; this version keeps `status` (COMPLETED, PARTIAL, FAILED, CANCELLED) and adds `missing[]`, required for PARTIAL and CANCELLED and forbidden for COMPLETED. FAILED requires at least one error. This is a proposal for review.
 - **Context identity.** `context_id` and `revision` are immutable; an update is a new revision. A context carries `content` or a `snapshot_ref`. Cancellation is an event of a request, not a context state.
 - **Uncertainty.** A `score` needs its `scale`, `source` and `calibration`.
-- **Provenance.** The execution record carries the replay class, input and output references with digests, provider and model identity, and configuration and prompt digests. `random_seed` is optional.
+- **Provenance.** Always present. Only the replay class and the input are always required; a COMPLETED or PARTIAL result must also carry provider and model identity, the output reference with digest and the execution time. A FAILED or CANCELLED result that never reached inference carries an attempt-only record, so no model or output is invented. The record also holds configuration and prompt digests; `random_seed` is optional.
 - **Time and units.** Timestamps are RFC 3339 date-time; durations carry their unit in the name (`_ms`).
 - **Versioning.** `contract_version` is SemVer. A breaking change needs a new MAJOR version, a changelog entry and an approved decision. The `$id` values are URNs ending in the draft version; they are identifiers, not locations.
 

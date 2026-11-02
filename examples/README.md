@@ -31,7 +31,9 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-score-without-scale.json](invalid/result-score-without-scale.json) | result | a score needs scale, source and calibration |
 | [result-bad-digest.json](invalid/result-bad-digest.json) | result | digest must be sha256:<64 hex> |
 | [result-missing-provenance.json](invalid/result-missing-provenance.json) | result | provenance is required |
+| [result-completed-without-output.json](invalid/result-completed-without-output.json) | result | COMPLETED needs the full execution record, including output |
+| [result-partial-attempt-only-provenance.json](invalid/result-partial-attempt-only-provenance.json) | result | PARTIAL needs the full execution record |
 
 ## What this is not
 
-No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected. `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.
+No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the provenance change). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.

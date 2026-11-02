@@ -15,29 +15,11 @@
     ]
   },
   "provenance": {
-    "replay_class": "CONDITION_REPLAY_ONLY",
+    "replay_class": "REPLAY_UNAVAILABLE",
     "input": {
       "ref": "snapshot://input/req-0001",
       "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    "context_snapshot": {
-      "ref": "snapshot://context/ctx-0001/2",
-      "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-    },
-    "provider_id": "example-provider",
-    "model_id": "example-model",
-    "model_version": "2026-01",
-    "provider_config_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "prompt_template_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "inference_parameters": {
-      "temperature": 0.0
-    },
-    "output": {
-      "ref": "snapshot://output/res-0001",
-      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    "executed_at": "2026-11-02T10:00:01Z",
-    "duration_ms": 850
+    }
   },
   "created_at": "2026-11-02T10:00:02Z",
   "missing": [
