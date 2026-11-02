@@ -122,7 +122,7 @@ Drafted in an outside discussion; not verified against kritva-sense or kritva-sk
 | mind-result | contract_version, result_id, request_id, context_ref, status (COMPLETED, PARTIAL, FAILED, CANCELLED), completeness (COMPLETE, PARTIAL, INCOMPLETE), proposed_skills (may be empty), uncertainty, provenance | errors |
 | ProposedSkill | skill_id, parameters | version_constraint, preconditions, rationale, priority, uncertainty |
 
-A context update creates a new revision and never overwrites the context an earlier request used. `random_seed` in the execution record is optional. Open point: `status` and `completeness` overlap (PARTIAL appears in both); KOS-MIND-001 should merge them or define how they differ.
+A context update creates a new revision and never overwrites the context an earlier request used. `random_seed` in the execution record is optional. The first schemas ([contract/](contract/README.md)) merge `status` and `completeness` into `status` plus `missing[]`; that is a proposal for review.
 
 ## 12. Questions for the joint reviews
 

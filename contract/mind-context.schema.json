@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kritva:mind:contract:context:0.1.0",
+  "title": "Mind context",
+  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). A revision of a context. Identity and revision are immutable; an update creates a new revision and never overwrites the context an earlier request used. Cancellation is an explicit event of a request, not a context state.",
+  "type": "object",
+  "properties": {
+    "contract_version": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion" },
+    "context_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "lifecycle_state": { "enum": ["CREATED", "ACTIVE", "SNAPSHOTTED", "CLOSED", "EXPIRED"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "created_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" },
+    "updated_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" },
+    "expires_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" },
+    "content": { "type": "object" },
+    "snapshot_ref": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Reference" },
+    "source_refs": {
+      "type": "array",
+      "items": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Reference" }
+    },
+    "metadata": { "type": "object" }
+  },
+  "required": ["contract_version", "context_id", "revision", "lifecycle_state", "owner", "created_at", "updated_at"],
+  "anyOf": [
+    { "required": ["content"] },
+    { "required": ["snapshot_ref"] }
+  ],
+  "additionalProperties": false
+}

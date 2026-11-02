@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kritva:mind:contract:result:0.1.0",
+  "title": "Mind result",
+  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[].",
+  "type": "object",
+  "properties": {
+    "contract_version": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion" },
+    "result_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
+    "request_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
+    "context_ref": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContextRef" },
+    "status": { "enum": ["COMPLETED", "PARTIAL", "FAILED", "CANCELLED"] },
+    "proposed_skills": {
+      "type": "array",
+      "items": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ProposedSkill" }
+    },
+    "missing": {
+      "description": "What a PARTIAL or CANCELLED result lacks.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "uncertainty": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Uncertainty" },
+    "provenance": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ExecutionRecord" },
+    "errors": {
+      "type": "array",
+      "items": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Error" }
+    },
+    "created_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" }
+  },
+  "required": ["contract_version", "result_id", "request_id", "context_ref", "status", "proposed_skills", "uncertainty", "provenance", "created_at"],
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["FAILED"] } } },
+      "then": {
+        "required": ["errors"],
+        "properties": { "errors": { "minItems": 1 } }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["PARTIAL", "CANCELLED"] } } },
+      "then": {
+        "required": ["missing"],
+        "properties": { "missing": { "minItems": 1 } }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["COMPLETED"] } } },
+      "then": { "not": { "required": ["missing"] } }
+    }
+  ],
+  "additionalProperties": false
+}
