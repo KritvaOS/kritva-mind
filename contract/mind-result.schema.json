@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:kritva:mind:contract:result:0.1.0",
   "title": "Mind result",
-  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[].",
+  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. provenance is always present; a COMPLETED or PARTIAL result must carry the full execution record, while a FAILED or CANCELLED result may carry an attempt-only record (replay class and input) when no inference ran. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[].",
   "type": "object",
   "properties": {
     "contract_version": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion" },
@@ -41,6 +41,16 @@
       "then": {
         "required": ["missing"],
         "properties": { "missing": { "minItems": 1 } }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["COMPLETED", "PARTIAL"] } } },
+      "then": {
+        "properties": {
+          "provenance": {
+            "required": ["provider_id", "model_id", "output", "executed_at"]
+          }
+        }
       }
     },
     {

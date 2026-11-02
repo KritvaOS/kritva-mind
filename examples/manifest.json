@@ -50,6 +50,14 @@
     "result-missing-provenance.json": {
       "schema": "result",
       "reason": "provenance is required"
+    },
+    "result-completed-without-output.json": {
+      "schema": "result",
+      "reason": "COMPLETED needs the full execution record, including output"
+    },
+    "result-partial-attempt-only-provenance.json": {
+      "schema": "result",
+      "reason": "PARTIAL needs the full execution record"
     }
   }
 }

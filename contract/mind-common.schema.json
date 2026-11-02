@@ -100,7 +100,7 @@
       "additionalProperties": false
     },
     "ExecutionRecord": {
-      "description": "Reasoning execution record: enough to reconstruct recorded conditions, verify input and output digests and classify replay fidelity.",
+      "description": "Reasoning execution record: enough to reconstruct recorded conditions, verify input and output digests and classify replay fidelity. Only the replay class and the input are always required, so a request that failed or was cancelled before any inference ran can still be recorded without invented model or output data. A COMPLETED or PARTIAL result must carry the full record (see mind-result).",
       "type": "object",
       "properties": {
         "replay_class": {
@@ -123,7 +123,7 @@
           "additionalProperties": { "type": "string" }
         }
       },
-      "required": ["replay_class", "input", "provider_id", "model_id", "output", "executed_at"],
+      "required": ["replay_class", "input"],
       "additionalProperties": false
     }
   }
