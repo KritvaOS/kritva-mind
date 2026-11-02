@@ -110,3 +110,22 @@ Sensing, motion control, skill orchestration and execution authority, platform f
 ## 10. Program authority
 
 The owner stated in chat (2026-11-02) that kritva-program is the program authority, as [AGENTS.md](AGENTS.md) says. An outside discussion had claimed that `kritva-enterprise-program` is the program record; this repository does not rely on that claim. The statement is not yet recorded in kritva-program itself, so it is an owner statement and not a verified program decision.
+
+## 11. Draft contract fields (for review before any schema is written)
+
+Drafted in an outside discussion; not verified against kritva-sense or kritva-skill and not approved. Names and types may change in KOS-MIND-001.
+
+| Schema | Required | Optional |
+|---|---|---|
+| mind-request | contract_version, request_id, intent, input (object), context_ref (context_id, revision) | constraints, requested_output, created_at, correlation_id |
+| mind-context | context_id, revision (integer), lifecycle_state (CREATED, ACTIVE, SNAPSHOTTED, CLOSED, EXPIRED), created_at, updated_at; at least one of content or snapshot_ref | source_refs, metadata |
+| mind-result | contract_version, result_id, request_id, context_ref, status (COMPLETED, PARTIAL, FAILED, CANCELLED), completeness (COMPLETE, PARTIAL, INCOMPLETE), proposed_skills (may be empty), uncertainty, provenance | errors |
+| ProposedSkill | skill_id, parameters | version_constraint, preconditions, rationale, priority, uncertainty |
+
+A context update creates a new revision and never overwrites the context an earlier request used. `random_seed` in the execution record is optional. Open point: `status` and `completeness` overlap (PARTIAL appears in both); KOS-MIND-001 should merge them or define how they differ.
+
+## 12. Questions for the joint reviews
+
+**kritva-sense:** which Sense contract version and schema Mind consumes, and how compatibility is managed; which fields carry observations, timestamps, source identity and uncertainty; how stale, missing, partial, invalid and unavailable observations are represented; whether Mind can keep a reference and digest of the original input; ownership and lifecycle of data passed into context.
+
+**kritva-skill:** the canonical skill identity and version-reference format, and whether Mind can propose a version constraint without pinning an unapproved version; what Skill needs to resolve a proposal against its manifest; the parameter schema and precondition format; which validations are Mind's and which Skill repeats before execution; how Skill handles rejected proposals, unmet preconditions, cancellation, partial execution and failure; what Skill returns to keep traceability from proposal to execution; and explicit confirmation that Mind proposes and Skill independently validates and authorizes.
