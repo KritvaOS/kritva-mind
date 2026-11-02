@@ -12,7 +12,7 @@
 | Lifecycle Status | PLANNING (governance baseline only) |
 | Repository Owner | Project owner (role; see section 15) |
 | Security Owner | Security Owner role ([SECURITY.md](SECURITY.md)) |
-| Architecture | Not yet defined: the architecture task KOS-MIND-001 is proposed and not approved (see [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md)) |
+| Architecture | Proposed only ([ARCHITECTURE.md](ARCHITECTURE.md), not approved): the architecture task KOS-MIND-001 is proposed and not approved (see [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md)) |
 | Milestones | [planning/MILESTONE.md](planning/MILESTONE.md) and [planning/MILESTONE_STATUS.md](planning/MILESTONE_STATUS.md) |
 | Tasks | [planning/TASKS.md](planning/TASKS.md) |
 | Acceptance Criteria | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) |
@@ -37,7 +37,7 @@ Kritva Mind is one of the capability repositories planned for Kritva OS V2, next
 
 ## 3. Architecture
 
-Not yet defined. The architecture and contract are the subject of task KOS-MIND-001, which is proposed and not approved; its criteria are in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 3. Until that task is approved and accepted there is no architecture document in this repository, and nothing in the planning files is an interface that other repositories may rely on. Interfaces are intended to be contract-first and versioned independently of program phases ([AGENTS.md](AGENTS.md)). Mind describes requests and results of inference; deterministic validation of a result schema is a software property and does not show that a result is correct, safe or fit to command a robot.
+A design proposal exists in [ARCHITECTURE.md](ARCHITECTURE.md); it is not approved and is not an interface other repositories may rely on. The architecture and contract are the subject of task KOS-MIND-001, which is proposed and not approved; its criteria are in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 3. Until that task is approved and accepted there is no architecture document in this repository, and nothing in the planning files is an interface that other repositories may rely on. Interfaces are intended to be contract-first and versioned independently of program phases ([AGENTS.md](AGENTS.md)). Mind describes requests and results of inference; deterministic validation of a result schema is a software property and does not show that a result is correct, safe or fit to command a robot.
 
 ## 4. Documents to Read First
 
@@ -55,6 +55,7 @@ Role first, then the status the document declares. A label is a role, not an app
 | 8 | [planning/CHANGELOG.md](planning/CHANGELOG.md) | REFERENCE | What changed |
 | 9 | [CONTRIBUTING.md](CONTRIBUTING.md) | AUTHORITATIVE for contribution steps | How to contribute |
 | 10 | [SECURITY.md](SECURITY.md) | AUTHORITATIVE for vulnerability reporting (route tested 18 October 2026, owner-attested) | How to report a vulnerability |
+| 11 | [ARCHITECTURE.md](ARCHITECTURE.md) | PROPOSED: design proposal for KOS-MIND-001; not approved | Subsystems, data flow, open decisions |
 
 ## 5. Repository Structure and File Responsibilities
 

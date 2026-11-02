@@ -21,6 +21,12 @@ kritva-core (approved contract), kritva-sense (versioned Sense contract). Exact 
 | AC-003 | Cancellation is specified and tested, including partial results. | cancellation tests |
 | AC-004 | Validation is deterministic: the same input and context give the same validation outcome. | determinism tests |
 | AC-005 | Mind consumes Sense only through the versioned Sense contract, never its internals. | dependency review |
+| AC-006 | [ARCHITECTURE.md](ARCHITECTURE.md) is reviewed and states subsystem responsibilities, data flow and the open decisions it leaves; it is not an accepted baseline until the owner approves it. | architecture review |
+| AC-007 | The result is a proposal: the contract has no field that commands an actuator, and execution authority is stated to belong to Skill. The Mind-to-Skill interaction is reviewed with kritva-skill. | contract review, cross-repository review |
+| AC-008 | Context identity has a defined lifecycle (create, update, expire), and a result carries the context identity and provenance of its inputs. | schema tests, contract review |
+| AC-009 | Edge resilience: with no cloud connection, contract validation, request lifecycle, cancellation and access to explicitly available local context work; an unavailable provider gives an explicit error; stale remote context is never silently substituted. No claim of offline reasoning unless a local provider is deployed. | disconnected-operation tests (candidate profile: 30 minutes, not an availability commitment) |
+| AC-010 | Hybrid compatibility: the contract is independent of whether a provider runs on Edge, Nexus or Cloud; a provider change is recorded in provenance; context identity and version survive a move between deployments. No latency threshold is set until system requirements exist; timestamps, timeouts and deadline outcomes are recorded. | conformance tests per provider kind |
+| AC-011 | Provenance and replay: a result carries an execution record sufficient to reconstruct conditions, verify input and output digests and classify replay fidelity. | schema tests, replay comparison |
 
 ## 4. Interface and API compatibility
 
