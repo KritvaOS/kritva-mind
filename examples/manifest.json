@@ -1,0 +1,55 @@
+{
+  "_note": "Expected outcome of each example against the proposed 0.1.0-draft schemas. Valid files must pass their schema; invalid files must fail it.",
+  "valid": {
+    "request.json": "request",
+    "context-active.json": "context",
+    "context-snapshot-only.json": "context",
+    "result-completed.json": "result",
+    "result-partial.json": "result",
+    "result-cancelled.json": "result",
+    "result-failed-provider-unavailable.json": "result",
+    "result-replay-unavailable.json": "result"
+  },
+  "invalid": {
+    "request-missing-context-ref.json": {
+      "schema": "request",
+      "reason": "context_ref is required"
+    },
+    "context-no-content-or-snapshot.json": {
+      "schema": "context",
+      "reason": "content or snapshot_ref is required"
+    },
+    "context-revision-zero.json": {
+      "schema": "context",
+      "reason": "revision starts at 1"
+    },
+    "result-authorized-field.json": {
+      "schema": "result",
+      "reason": "no authorization field exists; unknown fields are rejected"
+    },
+    "result-failed-without-errors.json": {
+      "schema": "result",
+      "reason": "FAILED needs at least one error"
+    },
+    "result-partial-without-missing.json": {
+      "schema": "result",
+      "reason": "PARTIAL needs missing[]"
+    },
+    "result-completed-with-missing.json": {
+      "schema": "result",
+      "reason": "COMPLETED must not list missing"
+    },
+    "result-score-without-scale.json": {
+      "schema": "result",
+      "reason": "a score needs scale, source and calibration"
+    },
+    "result-bad-digest.json": {
+      "schema": "result",
+      "reason": "digest must be sha256:<64 hex>"
+    },
+    "result-missing-provenance.json": {
+      "schema": "result",
+      "reason": "provenance is required"
+    }
+  }
+}
