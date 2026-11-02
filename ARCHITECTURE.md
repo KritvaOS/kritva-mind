@@ -101,12 +101,12 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
 | D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | approval in those repositories |
 | D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
-| D-7 | Program authority record | see section 10 | owner |
+| D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
 
 ## 9. Out of scope
 
 Sensing, motion control, skill orchestration and execution authority, platform foundation, a specific model or framework, ROS 2 as the primary framework (an adapter can be provided later), and any hardware or safety validation claim.
 
-## 10. Unverified claim about the program record
+## 10. Program authority
 
-An outside discussion stated that `kritva-enterprise-program` (private) is the program record and `kritva-program` (public) is a projection of it, contrary to what this repository's documents say. That was not verified here. This repository keeps naming kritva-program as in [AGENTS.md](AGENTS.md) until the owner confirms the hierarchy; nothing in this repository is changed on that basis.
+The owner stated in chat (2026-11-02) that kritva-program is the program authority, as [AGENTS.md](AGENTS.md) says. An outside discussion had claimed that `kritva-enterprise-program` is the program record; this repository does not rely on that claim. The statement is not yet recorded in kritva-program itself, so it is an owner statement and not a verified program decision.
