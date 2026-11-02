@@ -14,10 +14,10 @@ These are candidates only. Each becomes a row above when its prerequisites and a
 
 | Candidate | Scope | Depends on | Target milestone |
 |---|---|---|---|
-| KOS-MIND-002 | Schema validation, cancellation and error-path tests; implement `make test-unit` | KOS-MIND-001 accepted | V2-M2-MIND-001 |
-| KOS-MIND-003 | Context identity and lifecycle implementation | KOS-MIND-001 accepted | V2-M2-MIND-001 |
+| KOS-MIND-002 | Validator implementation (decision D-2), schema validation, cancellation and error-path tests; implement `make test-unit` | KOS-MIND-001 accepted | V2-M2-MIND-001 |
+| KOS-MIND-003 | Context lifecycle checks and edge/hybrid conformance tests (AC-009, AC-010) | KOS-MIND-001 accepted | V2-M2-MIND-001 |
 | KOS-MIND-004 | Integration tests against the Core and Sense contract boundaries; implement `make test-integration` and `make test-regression` | approved Core and Sense contracts | V2-M2-MIND-001 |
-| KOS-MIND-005 | Reasoning adapter interface and knowledge interface | KOS-MIND-001 accepted; decision D-4 | V2-M5-MIND-001 |
+| KOS-MIND-005 | Reasoning adapter and memory interface conformance (implementations live outside this repository unless decided otherwise) | KOS-MIND-001 accepted; decision D-4 | V2-M5-MIND-001 |
 | KOS-MIND-006 | Replay and reproducibility of results in simulation; Mind-to-Skill integration tests | KOS-MIND-002, a Skill contract | V2-M5-MIND-001 |
 | KOS-MIND-007 | Security, resource limits and failure-recovery review; release evidence | earlier tasks | V2-M8-MIND-001 |
 

@@ -23,19 +23,18 @@ Mind owns the request, context and result contract (inputs, context identity, ou
 
 Limits of what validation shows: schema validity is not safety, and a model's confidence value is not evidence of correctness. Nothing in this design is hardware or safety validation; such claims stay gated on program milestone V2-M6 (HOLD).
 
-## 3. Logical subsystems
+## 3. Components in scope
 
-These are logical components, not approved modules or folders.
+Scope is limited to the contract (see AGENTS.md section 1). These are logical components, not approved modules or folders.
 
-| Subsystem | Responsibility | First needed |
+| Component | Responsibility | In KOS-MIND-001 |
 |---|---|---|
-| Mind Core | Request lifecycle, coordination, cancellation | contract (V2-M1) |
-| Mind Context | Task and robot-state context, history, stable context identity | contract (V2-M1) |
-| Mind Validation | Schema and semantic validation, uncertainty and error reporting | contract (V2-M1); implementation V2-M2 |
-| Mind Reasoning | Inference behind an adapter interface; interpretation and proposals | V2-M2 to V2-M5 |
-| Mind Planning | Goal decomposition into proposed skill invocations | V2-M5 |
-| Mind Knowledge | Retrieval and memory behind an abstract interface; backend deferred | V2-M2 to V2-M5 |
-| Mind Runtime | Adapters and deployment independent of execution | after the contract |
+| Mind Core | Request lifecycle and coordination, cancellation | specified |
+| Mind Context | Context identity and lifecycle (not the persistence backend) | specified |
+| Mind Validation | Deterministic schema and semantic validation, uncertainty and error reporting | specified |
+| Reasoning Adapter Interface | Abstract request and response interface to reasoning providers, result metadata | specified |
+
+Not owned by this repository at this stage: reasoning engine implementations (model adapters, local serving, cloud integration), knowledge and memory backends, task planning and decomposition, and runtime or deployment orchestration. Where they live is decided when their requirements are concrete; no new repository is proposed now. The earlier seven-subsystem idea (adding Planning, Knowledge and Runtime) is deferred.
 
 ## 4. Data flow
 
@@ -62,13 +61,20 @@ Cancellation can arrive at any point and yields a result that states what was co
 
 | Element | Must state |
 |---|---|
-| Request | identity, schema version, task and constraints, time and units, optional deadline |
-| Context | stable context identity, lifecycle (create, update, expire), source and version of each Sense input |
-| Result | context identity, proposal, uncertainty fields, error fields, provenance, completeness (complete, partial, cancelled, failed) |
-| Cancellation | who may cancel, when, what a partial result contains |
+| Request | request identity, schema version, task and constraints, time and units, optional deadline |
+| Context | immutable context identity, revision number, timestamps, ownership, lifecycle (created, active, updated or snapshotted, closed, expired; cancellation is an explicit event, not deletion), source and version of each Sense input |
+| Result | result and request identity, context identity, status (completed, partial, failed, cancelled), proposed skills, uncertainty, completeness, provenance, errors, contract version |
+| Proposed skill | skill reference, compatible version or constraint, proposed parameters, known preconditions, rationale, proposal-level uncertainty, priority |
+| Uncertainty | an optional score with a defined scale, source and calibration status, plus qualitative uncertainty and assumptions; never a single number standing in for uncertainty |
+| Cancellation | who may cancel, when, what a partial result contains and which information is missing |
+| Execution record (provenance) | input and context snapshot references with digests, provider, model and version, provider configuration and prompt template digests, inference parameters, seed if supported, output snapshot and digest, timestamp, tool versions, replay class |
 | Versioning | MAJOR.MINOR.PATCH, compatibility rules, deprecation |
 
-Field names and encodings are not chosen here. The encoding (for example JSON Schema) is decision D-1 in section 8.
+Execution authority is not granted by Mind: the result has no `authorized` or `execute` field that Skill must trust. Skill resolves the skill reference, validates its manifest, version and preconditions, and decides. Mind may validate parameters structurally against a skill's declared input schema; Skill stays authoritative at execution time.
+
+Replay: validation is deterministic for identical inputs and validator version; inference may not be. The execution record lets a replay reconstruct the recorded conditions. The replay class is EXACT_REPLAY_SUPPORTED, CONDITION_REPLAY_ONLY or REPLAY_UNAVAILABLE. Exact equality is required only where the provider supports deterministic replay; otherwise a replay is labelled a comparison, not an exact reproduction. The original result stays immutable evidence.
+
+Field names and encodings are proposals until KOS-MIND-001 is approved. The encoding (JSON Schema, a pinned draft such as 2020-12) is decision D-1 in section 8.
 
 ## 6. Interfaces with other repositories
 
@@ -89,13 +95,18 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 
 | ID | Decision | Recommendation | Needs |
 |---|---|---|---|
-| D-1 | Contract encoding | JSON Schema; transport decided separately | owner decision |
-| D-2 | Implementation language of validators | Python 3, standard library only, as the existing scripts | owner decision |
-| D-3 | Stateless requests or persistent context | explicit context identity and lifecycle | KOS-MIND-001 review |
-| D-4 | Memory backend | pluggable interface; defer backend | later task |
-| D-5 | Core and Sense contract versions | pin when approved | approval in those repositories |
-| D-6 | Mind to Skill interaction contract | design jointly with kritva-skill | kritva-skill review |
+| D-1 | Contract encoding | JSON Schema with a pinned draft (2020-12); transport decided separately | owner decision |
+| D-2 | Validator implementation | not decided in KOS-MIND-001. The Python standard library has no full JSON Schema validator, so the choice is a pinned third-party validator or a limited dependency-free validator that documents unsupported features | owner decision in the validation task |
+| D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
+| D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
+| D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | approval in those repositories |
+| D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
+| D-7 | Program authority record | see section 10 | owner |
 
 ## 9. Out of scope
 
 Sensing, motion control, skill orchestration and execution authority, platform foundation, a specific model or framework, ROS 2 as the primary framework (an adapter can be provided later), and any hardware or safety validation claim.
+
+## 10. Unverified claim about the program record
+
+An outside discussion stated that `kritva-enterprise-program` (private) is the program record and `kritva-program` (public) is a projection of it, contrary to what this repository's documents say. That was not verified here. This repository keeps naming kritva-program as in [AGENTS.md](AGENTS.md) until the owner confirms the hierarchy; nothing in this repository is changed on that basis.
