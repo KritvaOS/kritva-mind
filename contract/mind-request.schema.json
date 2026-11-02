@@ -5,24 +5,61 @@
   "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). A request for Mind to interpret a task in a context.",
   "type": "object",
   "properties": {
-    "contract_version": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion" },
-    "request_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
-    "intent": { "type": "string", "minLength": 1 },
-    "input": { "type": "object" },
-    "context_ref": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContextRef" },
+    "contract_version": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion"
+    },
+    "request_id": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id"
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input": {
+      "type": "object"
+    },
+    "context_ref": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContextRef"
+    },
     "constraints": {
       "type": "object",
       "properties": {
-        "deadline": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" },
-        "timeout_ms": { "type": "integer", "minimum": 1 },
-        "allowed_providers": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+        "deadline": {
+          "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp"
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowed_providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "freshness": {
+          "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/FreshnessPolicy"
+        }
       },
       "additionalProperties": true
     },
-    "requested_output": { "type": "object" },
-    "created_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" },
-    "correlation_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" }
+    "requested_output": {
+      "type": "object"
+    },
+    "created_at": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp"
+    },
+    "correlation_id": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id"
+    }
   },
-  "required": ["contract_version", "request_id", "intent", "input", "context_ref"],
+  "required": [
+    "contract_version",
+    "request_id",
+    "intent",
+    "input",
+    "context_ref"
+  ],
   "additionalProperties": false
 }
