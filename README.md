@@ -29,7 +29,7 @@ Kritva Mind is the part of Kritva OS V2 that will own the Mind request, context 
 
 **This repository does not own**: sensing (kritva-sense), motion (kritva-motion), skill orchestration (kritva-skill), and the platform foundation (kritva-core).
 
-**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. NOT YET IMPLEMENTED: the contract, any source code, tests of the contract, a `src/` folder, unit, integration and regression gates, status reporting and any release. PROPOSED: the first task KOS-MIND-001 (Mind request, context and result contract), which is "NOT_STARTED (proposed, awaiting owner approval)" in [planning/TASKS.md](planning/TASKS.md). Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
+**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. PROPOSED, in progress: the contract schemas under [contract/](contract/README.md) (0.1.0-draft, not accepted, no validator) and the architecture ([ARCHITECTURE.md](ARCHITECTURE.md)), for task KOS-MIND-001, which is IN_PROGRESS on the owner's instruction in [planning/TASKS.md](planning/TASKS.md). NOT YET IMPLEMENTED: any source code, tests of the contract, a `src/` folder, unit, integration and regression gates, status reporting and any release. Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
 
 ## 2. Position in the KritvaOS Ecosystem
 
@@ -70,6 +70,7 @@ Labels: INPUT is edited by hand and read by a tool or review; GENERATED is writt
 | [.github/](.github/) | CODEOWNERS, pull request template, `kritva-gate.json` and four workflows | AUTHORITATIVE | `kritva-gate.json` configures the PR gate |
 | [Makefile](Makefile) | Check targets; unimplemented gates exit 3 | INPUT; IMPLEMENTED | See section 11 |
 | [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [LICENSE](LICENSE) | Rules, contribution steps, security policy, licence | AUTHORITATIVE | |
+| [contract/](contract/) | Proposed JSON Schemas for the request, context and result (0.1.0-draft) | INPUT; PROPOSED | Not accepted; no validator, so no test gate covers them |
 | `src/`, `include/`, `docs/`, `status/`, `examples/` | Source, interfaces, documentation, status report, examples | NOT YET IMPLEMENTED (absent) | Added only when a real task needs them |
 
 ## 6. Toolchain and Development Workflow
@@ -124,7 +125,7 @@ Not yet implemented. This repository has no `status/` directory and generates no
 
 | Dimension | Source record | Authority |
 |---|---|---|
-| Execution | the task status in [planning/TASKS.md](planning/TASKS.md); KOS-MIND-001 is NOT_STARTED | The task owner records it |
+| Execution | the task status in [planning/TASKS.md](planning/TASKS.md); KOS-MIND-001 is IN_PROGRESS | The task owner records it |
 | Evidence | none recorded: no CI run, test result or review record is cited as task evidence | Evidence is recorded at acceptance, by the author, and checked by another reviewer |
 | Acceptance | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md), the review record and the central approvals in kritva-program | The independent reviewer and the owner, never a status report |
 | Release readiness | not defined: no release, tag or completion record exists | The owner, through the central gates |
@@ -148,7 +149,7 @@ CI runs four workflows. `make check` is a local command and is not the same as C
 | `make lint`, `make test-unit`, `make test-integration`, `make test-regression`, `make test`, `make acceptance` | placeholder | print NOT_IMPLEMENTED and exit 3: they check nothing and are never a pass |
 | `python3 scripts/security/check_commit_format.py --range origin/main..HEAD` | check | the commit format of the commits on a branch (the PR gate runs the same check as rule R01) |
 
-There is nothing to build and no test of the contract, because there is no contract yet. A passing `make check` shows only that the listed files exist and that the commit checker's own tests pass. It does not show that a design is right, that a gate is closed or that anything is safe. `.github/kritva-gate.json` declares three required checks (`secret-scan`, `commit-message-check` and `pr-acceptance-gate`); that list is the gate's own declaration, not the branch ruleset. [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md) now name the same three. The owner decided that `pr-acceptance-gate` is a required check in the `main` ruleset (PD-018, D-061); the owner states that it has been added to the `main` ruleset (D-069); that is OWNER-ATTESTED and not independently verified from this README.
+There is nothing to build and no test of the contract: the schemas under `contract/` are proposed and no validator exists yet. A passing `make check` shows only that the listed files exist and that the commit checker's own tests pass. It does not show that a design is right, that a gate is closed or that anything is safe. `.github/kritva-gate.json` declares three required checks (`secret-scan`, `commit-message-check` and `pr-acceptance-gate`); that list is the gate's own declaration, not the branch ruleset. [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md) now name the same three. The owner decided that `pr-acceptance-gate` is a required check in the `main` ruleset (PD-018, D-061); the owner states that it has been added to the `main` ruleset (D-069); that is OWNER-ATTESTED and not independently verified from this README.
 
 ## 12. Git Workflow and Review
 

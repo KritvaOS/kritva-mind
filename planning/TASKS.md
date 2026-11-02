@@ -4,7 +4,7 @@ Task IDs use the prefix `KOS-MIND` (proposed registry, program decision PD-004).
 
 | Task | Title | Status | Milestone | Acceptance |
 |---|---|---|---|---|
-| KOS-MIND-001 | Mind request, context and result contract | NOT_STARTED (proposed, awaiting owner approval) | V2-M1-MIND-001 | [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 3 |
+| KOS-MIND-001 | Mind request, context and result contract | IN_PROGRESS (owner approved the start in chat, 2026-11-02; see [tasks/KOS-MIND-001/TASK.md](../tasks/KOS-MIND-001/TASK.md)) | V2-M1-MIND-001 | [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 3 |
 
 Task KOS-MIND-001 includes the architecture ([ARCHITECTURE.md](../ARCHITECTURE.md), proposed) as its first deliverable.
 
@@ -21,4 +21,4 @@ These are candidates only. Each becomes a row above when its prerequisites and a
 | KOS-MIND-006 | Replay and reproducibility of results in simulation; Mind-to-Skill integration tests | KOS-MIND-002, a Skill contract | V2-M5-MIND-001 |
 | KOS-MIND-007 | Security, resource limits and failure-recovery review; release evidence | earlier tasks | V2-M8-MIND-001 |
 
-`tasks/KOS-MIND-001/TASK.md` is created when the task starts, not before.
+Task files are created when a task starts, not before.
