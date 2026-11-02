@@ -9,8 +9,8 @@ Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC
 | PR | Content | State |
 |---|---|---|
 | 1 | [ARCHITECTURE.md](../../ARCHITECTURE.md), criteria, candidate tasks | merged (PR 9) |
-| 2 | JSON Schemas and [contract/README.md](../../contract/README.md) | this change |
-| 3 | valid and invalid examples; Sense compatibility review; joint review with kritva-skill | not started |
+| 2 | JSON Schemas and [contract/README.md](../../contract/README.md) | merged (PR 10) |
+| 3 | [examples](../../examples/README.md); Sense compatibility notes and Skill review questions ([COMPATIBILITY.md](../../contract/COMPATIBILITY.md)) | this change; the Skill review cannot start until KOS-SKILL-001 does |
 | 4 | criteria review, approvals, evidence, tag v0.1.0 after the approved merge | not started |
 
 ## Out of scope
