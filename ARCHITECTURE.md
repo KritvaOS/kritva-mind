@@ -99,7 +99,7 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 | D-2 | Validator implementation | not decided in KOS-MIND-001. The Python standard library has no full JSON Schema validator, so the choice is a pinned third-party validator or a limited dependency-free validator that documents unsupported features | owner decision in the validation task |
 | D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
-| D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | approval in those repositories |
+| D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: open, no approved contract consumed |
 | D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
 | D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
 

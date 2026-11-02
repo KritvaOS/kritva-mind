@@ -48,7 +48,7 @@ The schemas now draft answers to the open points in the Sense table above: an `O
 
 | ID | Decision | Owner |
 |---|---|---|
-| C-1 | Record Sense contract 0.1.0 as a normative dependency, and the tag or SHA that identifies it | owner |
+| C-1 | Record Sense contract 0.1.0 as a normative dependency, and the tag or SHA that identifies it | DECIDED by the owner in chat, 2026-11-02: contract 0.1.0 at tag `v0.2.0` (commit `543f574`); recorded in [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 2 |
 | C-2 | How observation references carry clock, value and validity | DRAFTED in the schemas (`observations[]`); needs a check by the Sense owner |
 | C-3 | Where `max_age_ns` is declared and what error codes Mind defines for stale, missing and invalid input | DRAFTED in the schemas (`constraints.freshness`, error code enum); needs review |
 | C-4 | Start KOS-SKILL-001 so the joint review can happen | owner |

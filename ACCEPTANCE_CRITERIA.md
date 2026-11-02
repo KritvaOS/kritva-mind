@@ -10,7 +10,14 @@ Does not own: sensing (kritva-sense), motion (kritva-motion), skill orchestratio
 
 ## 2. Normative dependencies
 
-kritva-core (approved contract), kritva-sense (versioned Sense contract). Exact versions or commit SHAs are recorded here when the contracts they refer to are approved; none are pinned yet.
+kritva-core (approved contract), kritva-sense (versioned Sense contract). Exact versions or commit SHAs are recorded here when the contracts they refer to are approved.
+
+| Dependency | Pinned version | Identified by | Recorded |
+|---|---|---|---|
+| kritva-sense | Sense contract 0.1.0 (`contract/SENSE_CONTRACT.md`) | tag `v0.2.0`, commit `543f5743d6ffd8fa1ed1ee5fdbf8295ae6a69a77` (the contract is unchanged from tag `v0.1.0`, commit `07c48d5398bea19e58f7bd4c7a5af55041b28df5`) | owner decision in chat, 2026-11-02; no separate approval record |
+| kritva-core | none | not pinned: no approved Core contract is consumed by the draft schemas | |
+
+The Sense contract is approved by the owner under the interim D-047 review and is still a 0.x contract that Sense may change with a changelog entry and a decision. A change to the pinned version here is a criteria change and needs its own review.
 
 ## 3. Functional criteria (KOS-MIND-001)
 
