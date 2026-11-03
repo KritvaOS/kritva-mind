@@ -99,9 +99,9 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 | D-2 | Validator implementation | DECIDED (owner instruction "Decide D2" in chat, 2026-11-03; no separate approval record): a limited, dependency-free validator in the Python 3 standard library, for KOS-MIND-002. It supports only the keywords the contract schemas use and refuses any other keyword, so it cannot silently ignore one. Reasons: the repository and its CI are standard-library only, kritva-sense does the same, the schemas use a small keyword set, and error ordering stays under our control (AC-004). Safeguards in section 8.1 | none |
 | D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
-| D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: no Core contract is consumed (proposed, owner to confirm; see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)) |
+| D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: no Core contract is consumed (confirmed by the owner in chat, 2026-11-03; see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)) |
 | D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
-| D-8 | Authentication of Mind callers | proposed: outside the Mind request schema; the platform boundary authenticates and Skill independently authorizes (see COMPATIBILITY.md) | owner |
+| D-8 | Authentication of Mind callers | proposed: outside the Mind request schema; the platform boundary authenticates and Skill independently authorizes (see COMPATIBILITY.md); DECIDED by the owner in chat, 2026-11-03 (C-5); no separate approval record | none |
 | D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
 
 ### 8.1 Validator safeguards (D-2)
