@@ -19,6 +19,7 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [context-with-observations.json](valid/context-with-observations.json) | context |
 | [request-with-freshness.json](valid/request-with-freshness.json) | request |
 | [result-partial-stale-input.json](valid/result-partial-stale-input.json) | result |
+| [result-two-proposals-with-constraints.json](valid/result-two-proposals-with-constraints.json) | result |
 
 ## Invalid
 
@@ -40,7 +41,13 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [context-observation-no-clock.json](invalid/context-observation-no-clock.json) | context | an observation reference carries its clock |
 | [request-freshness-now-without-clock.json](invalid/request-freshness-now-without-clock.json) | request | now_ns needs the clock it came from |
 | [result-sense-error-code-as-mind-code.json](invalid/result-sense-error-code-as-mind-code.json) | result | a Sense code is not a Mind code; it goes in detail.sense_error_code |
+| [result-proposal-without-id.json](invalid/result-proposal-without-id.json) | result | every proposal needs a proposal_id |
+| [result-skill-id-uppercase.json](invalid/result-skill-id-uppercase.json) | result | skill_id must be a lowercase dotted name |
+| [result-version-constraint-latest.json](invalid/result-version-constraint-latest.json) | result | version_constraint must follow the closed grammar; no tags |
+| [result-version-constraint-wildcard.json](invalid/result-version-constraint-wildcard.json) | result | no wildcards in version_constraint |
+| [result-version-constraint-prerelease.json](invalid/result-version-constraint-prerelease.json) | result | no pre-release versions in version_constraint |
+| [result-negative-priority.json](invalid/result-negative-priority.json) | result | priority starts at 0 |
 
 ## What this is not
 
-No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the observation and freshness change). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.
+No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the proposal field changes). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.

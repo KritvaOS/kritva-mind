@@ -24,7 +24,19 @@ Checked on 2026-11-02 against the public repositories on GitHub; nothing was run
 
 ## Skill (kritva-skill)
 
-**State found.** The Skill repository has a proposed task KOS-SKILL-001 (Skill manifest and execution contract) with status NOT_STARTED, awaiting owner approval, no contract folder and no tags. Its acceptance criteria list its normative dependency on versioned Mind and Motion contracts. So there is no Skill manifest or schema to check the Mind result against, and the joint review cannot be completed yet. The `ProposedSkill` fields in the Mind draft are unverified against any Skill definition.
+**State found (2026-11-03).** Skill's pull request 9 is merged: KOS-SKILL-001 is IN_PROGRESS on the owner's chat instruction and `docs/design/MIND_SKILL_INTERFACE.md` is on its `main`. That note is a proposal, not an approved contract, and there is still no Skill manifest or execution schema to check a Mind result against. It answers the questions below as proposals and asked Mind for seven changes. Status of those changes in the Mind draft:
+
+| Skill request | Mind draft now |
+|---|---|
+| `proposal_id` on a proposal | added, required, unique within a result (validator rule) |
+| `skill_id` pattern and closed `version_constraint` grammar | added as `SkillId` and `VersionConstraint`; examples for each rule |
+| optional `precondition_id`; `expression` not evaluated | added; stated in the schema and contract README |
+| direction and tie-breaking of `priority` | lower first; ties and absent values by ascending `proposal_id`; absent after present |
+| Mind validating against Skill's schema vs no dependency on Skill | only with a schema supplied as runtime data and within the validator subset; ARCHITECTURE.md section 5 corrected |
+| handling of PARTIAL results | stated: advisory; consumers must not execute them unless their policy says so |
+| compatibility notes | this section |
+
+Open on the Skill side, not decided here: where skill-version approval is recorded, the authorization policy, the precondition check vocabulary, who may cancel a run, and the mapping between Skill's run lifecycle and Motion's public command states. The joint review is not complete: nobody but the owner has reviewed either side.
 
 **Questions to put to kritva-skill (from [ARCHITECTURE.md](../ARCHITECTURE.md) section 12)**
 

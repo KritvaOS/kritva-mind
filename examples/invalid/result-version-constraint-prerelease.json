@@ -1,0 +1,65 @@
+{
+  "contract_version": "0.1.0",
+  "result_id": "res-0001",
+  "request_id": "req-0001",
+  "context_ref": {
+    "context_id": "ctx-0001",
+    "revision": 2
+  },
+  "status": "COMPLETED",
+  "proposed_skills": [
+    {
+      "proposal_id": "prop-001",
+      "skill_id": "example.grasp",
+      "version_constraint": "^1.2.0-rc1",
+      "parameters": {
+        "object": "cup"
+      },
+      "preconditions": [
+        {
+          "description": "gripper is free"
+        }
+      ],
+      "rationale": "the request names the cup",
+      "priority": 0,
+      "uncertainty": {
+        "score": 0.8,
+        "scale": "probability 0..1",
+        "source": "provider self-report",
+        "calibration": "UNCALIBRATED"
+      }
+    }
+  ],
+  "uncertainty": {
+    "notes": "object identity inferred from one observation",
+    "assumptions": [
+      "cup is within reach"
+    ]
+  },
+  "provenance": {
+    "replay_class": "CONDITION_REPLAY_ONLY",
+    "input": {
+      "ref": "snapshot://input/req-0001",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "context_snapshot": {
+      "ref": "snapshot://context/ctx-0001/2",
+      "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provider_id": "example-provider",
+    "model_id": "example-model",
+    "model_version": "2026-01",
+    "provider_config_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "prompt_template_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "inference_parameters": {
+      "temperature": 0.0
+    },
+    "output": {
+      "ref": "snapshot://output/res-0001",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "executed_at": "2026-11-02T10:00:01Z",
+    "duration_ms": 850
+  },
+  "created_at": "2026-11-02T10:00:02Z"
+}

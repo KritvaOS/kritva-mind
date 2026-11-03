@@ -2,60 +2,155 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:kritva:mind:contract:result:0.1.0",
   "title": "Mind result",
-  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. provenance is always present; a COMPLETED or PARTIAL result must carry the full execution record, while a FAILED or CANCELLED result may carry an attempt-only record (replay class and input) when no inference ran. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[].",
+  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. provenance is always present; a COMPLETED or PARTIAL result must carry the full execution record, while a FAILED or CANCELLED result may carry an attempt-only record (replay class and input) when no inference ran. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[]. The proposals of a PARTIAL result are advisory: missing[] lists what Mind lacked, and a consumer must not execute them unless its own policy says so explicitly (Skill's proposed default is to reject them). Proposals of a FAILED or CANCELLED result are not to be executed.",
   "type": "object",
   "properties": {
-    "contract_version": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion" },
-    "result_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
-    "request_id": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id" },
-    "context_ref": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContextRef" },
-    "status": { "enum": ["COMPLETED", "PARTIAL", "FAILED", "CANCELLED"] },
+    "contract_version": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContractVersion"
+    },
+    "result_id": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id"
+    },
+    "request_id": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Id"
+    },
+    "context_ref": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ContextRef"
+    },
+    "status": {
+      "enum": [
+        "COMPLETED",
+        "PARTIAL",
+        "FAILED",
+        "CANCELLED"
+      ]
+    },
     "proposed_skills": {
       "type": "array",
-      "items": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ProposedSkill" }
+      "items": {
+        "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ProposedSkill"
+      }
     },
     "missing": {
       "description": "What a PARTIAL or CANCELLED result lacks.",
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
-    "uncertainty": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Uncertainty" },
-    "provenance": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ExecutionRecord" },
+    "uncertainty": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Uncertainty"
+    },
+    "provenance": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/ExecutionRecord"
+    },
     "errors": {
       "type": "array",
-      "items": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Error" }
+      "items": {
+        "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Error"
+      }
     },
-    "created_at": { "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp" }
+    "created_at": {
+      "$ref": "urn:kritva:mind:contract:common:0.1.0#/$defs/Timestamp"
+    }
   },
-  "required": ["contract_version", "result_id", "request_id", "context_ref", "status", "proposed_skills", "uncertainty", "provenance", "created_at"],
+  "required": [
+    "contract_version",
+    "result_id",
+    "request_id",
+    "context_ref",
+    "status",
+    "proposed_skills",
+    "uncertainty",
+    "provenance",
+    "created_at"
+  ],
   "allOf": [
     {
-      "if": { "properties": { "status": { "enum": ["FAILED"] } } },
-      "then": {
-        "required": ["errors"],
-        "properties": { "errors": { "minItems": 1 } }
-      }
-    },
-    {
-      "if": { "properties": { "status": { "enum": ["PARTIAL", "CANCELLED"] } } },
-      "then": {
-        "required": ["missing"],
-        "properties": { "missing": { "minItems": 1 } }
-      }
-    },
-    {
-      "if": { "properties": { "status": { "enum": ["COMPLETED", "PARTIAL"] } } },
-      "then": {
+      "if": {
         "properties": {
-          "provenance": {
-            "required": ["provider_id", "model_id", "output", "executed_at"]
+          "status": {
+            "enum": [
+              "FAILED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "errors"
+        ],
+        "properties": {
+          "errors": {
+            "minItems": 1
           }
         }
       }
     },
     {
-      "if": { "properties": { "status": { "enum": ["COMPLETED"] } } },
-      "then": { "not": { "required": ["missing"] } }
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "PARTIAL",
+              "CANCELLED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "missing"
+        ],
+        "properties": {
+          "missing": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "COMPLETED",
+              "PARTIAL"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provenance": {
+            "required": [
+              "provider_id",
+              "model_id",
+              "output",
+              "executed_at"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "COMPLETED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "missing"
+          ]
+        }
+      }
     }
   ],
   "additionalProperties": false
