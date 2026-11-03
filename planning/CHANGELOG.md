@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Plan aligned with the kritva-program V2 plan: stale pin and milestone-status notes fixed, no Core contract consumed (proposed), authentication kept outside the Mind request (proposed), AC-007 extended, candidate tasks revised (replay split from Mind-to-Skill integration, V2-M3 dependency, `unit-tests` workflow), tag order recorded (Task: KOS-MIND-001). Docs only; nothing is accepted.
 - Decision D-2 recorded in ARCHITECTURE.md: a limited standard-library validator with a keyword allowlist, for KOS-MIND-002 (Task: KOS-MIND-001). No validator exists yet.
 - ACCEPTANCE_CRITERIA.md section 2 pins the Sense contract 0.1.0 (tag `v0.2.0`, commit `543f574`) on the owner's instruction; Core stays unpinned (Task: KOS-MIND-001). Proposed criteria; the pin is not an integration and the draft schemas do not enforce the version.
 - Contract 0.1.0-draft: Sense observation references (`observations[]`), a freshness policy in request constraints and a closed list of Mind error codes; three valid and four invalid examples added (Task: KOS-MIND-001). Proposals for decisions C-2 and C-3, not reviewed by Sense; nothing released.

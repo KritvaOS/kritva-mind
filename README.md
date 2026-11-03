@@ -105,7 +105,7 @@ Proposed milestones, from [planning/MILESTONE.md](planning/MILESTONE.md) (genera
 
 | ID | Program milestone | Status recorded here | Outcome (proposed) |
 |---|---|---|---|
-| V2-M0-MIND-001 | V2-M0 FOUNDATION | IN_REVIEW (this change) | Repository governance baseline merged: acceptance criteria, CI checks, CODEOWNERS, AGENTS.md. |
+| V2-M0-MIND-001 | V2-M0 FOUNDATION | PROPOSED in the program plan; baseline merged, no completion record | Repository governance baseline merged: acceptance criteria, CI checks, CODEOWNERS, AGENTS.md. |
 | V2-M1-MIND-001 | V2-M1 STUDIO | PROPOSED | Mind request, context and result contract (task 001) reviewed and tagged v0.1.0. |
 | V2-M2-MIND-001 | V2-M2 BUILD & ARTIFACT | PROPOSED | Schema validation, cancellation and error-path tests pass; gates implemented. |
 | V2-M5-MIND-001 | V2-M5 EXECUTION | PROPOSED | Mind results reproducible in simulated execution. |

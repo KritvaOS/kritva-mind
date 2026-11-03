@@ -15,7 +15,7 @@ kritva-core (approved contract), kritva-sense (versioned Sense contract). Exact 
 | Dependency | Pinned version | Identified by | Recorded |
 |---|---|---|---|
 | kritva-sense | Sense contract 0.1.0 (`contract/SENSE_CONTRACT.md`) | tag `v0.2.0`, commit `543f5743d6ffd8fa1ed1ee5fdbf8295ae6a69a77` (the contract is unchanged from tag `v0.1.0`, commit `07c48d5398bea19e58f7bd4c7a5af55041b28df5`) | owner decision in chat, 2026-11-02; no separate approval record |
-| kritva-core | none | not pinned: no approved Core contract is consumed by the draft schemas | |
+| kritva-core | none | no Core contract is consumed by the draft schemas; Core states it does not authenticate entities (proposed, owner to confirm) | |
 
 The Sense contract is approved by the owner under the interim D-047 review and is still a 0.x contract that Sense may change with a changelog entry and a decision. A change to the pinned version here is a criteria change and needs its own review.
 
@@ -29,7 +29,7 @@ The Sense contract is approved by the owner under the interim D-047 review and i
 | AC-004 | Validation is deterministic: the same input and context give the same validation outcome. | determinism tests |
 | AC-005 | Mind consumes Sense only through the versioned Sense contract, never its internals. | dependency review |
 | AC-006 | [ARCHITECTURE.md](ARCHITECTURE.md) is reviewed and states subsystem responsibilities, data flow and the open decisions it leaves; it is not an accepted baseline until the owner approves it. | architecture review |
-| AC-007 | The result is a proposal: the contract has no field that commands an actuator, and execution authority is stated to belong to Skill. The Mind-to-Skill interaction is reviewed with kritva-skill. | contract review, cross-repository review |
+| AC-007 | The result is a proposal: the contract has no field that commands an actuator, and execution authority is stated to belong to Skill, which independently authorizes. Proposals carry a stable correlation handle. Mind's JSON request does not authenticate its caller. The Mind-to-Skill interaction, including the changes Skill's design note requests, is reviewed with kritva-skill. | contract review, cross-repository review |
 | AC-008 | Context identity has a defined lifecycle (create, update, expire), and a result carries the context identity and provenance of its inputs. | schema tests, contract review |
 | AC-009 | Edge resilience: with no cloud connection, contract validation, request lifecycle, cancellation and access to explicitly available local context work; an unavailable provider gives an explicit error; stale remote context is never silently substituted. No claim of offline reasoning unless a local provider is deployed. | disconnected-operation tests (candidate profile: 30 minutes, not an availability commitment) |
 | AC-010 | Hybrid compatibility: the contract is independent of whether a provider runs on Edge, Nexus or Cloud; a provider change is recorded in provenance; context identity and version survive a move between deployments. No latency threshold is set until system requirements exist; timestamps, timeouts and deadline outcomes are recorded. | conformance tests per provider kind |
