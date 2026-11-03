@@ -22,7 +22,7 @@ Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed
 
 1. Skill side updated against the current Mind contract in kritva-skill (its note still lists fields Mind has since added, and uses two names for one rejection code).
 2. Joint review recorded with kritva-skill (the proposal interface) and kritva-sense (observation and freshness mapping); decision D-6 closed only after it.
-3. Owner confirms D-1 (JSON Schema 2020-12) and records the decision.
+3. D-1 (JSON Schema 2020-12) is decided by the owner in chat, 2026-11-03, with no separate approval record; the owner may record it more formally at closure.
 4. Review records from the code owner and the architecture reviewer (both the owner on an interim basis, D-047, not independent).
 5. Criteria review: each of AC-001 to AC-011 given a disposition with evidence. None is marked met by a document review alone; criteria that need KOS-MIND-002 or later tasks stay NOT_IMPLEMENTED.
 6. The ingress-authentication gap (no platform boundary is specified) recorded as a known limitation of `v0.1.0`; whether it blocks the tag is the owner's decision.
@@ -36,4 +36,4 @@ Validator implementation, reasoning providers, memory backends, planning, deploy
 
 ## Open
 
-Decision D-1 (encoding, proposed JSON Schema 2020-12), the joint review with kritva-skill (C-4), and a pin of an approved Core contract version if one is consumed (the Sense contract 0.1.0 is pinned in the criteria).
+The joint review with kritva-skill (C-4), and a pin of an approved Core contract version if one is consumed (the Sense contract 0.1.0 is pinned in the criteria).
