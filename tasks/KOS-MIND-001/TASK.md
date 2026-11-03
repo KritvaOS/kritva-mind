@@ -19,4 +19,4 @@ Validator implementation, reasoning providers, memory backends, planning, deploy
 
 ## Open
 
-Decisions D-1 (encoding, proposed JSON Schema 2020-12), D-2 (validator), joint reviews, pins of approved Core and Sense contract versions.
+Decisions D-1 (encoding, proposed JSON Schema 2020-12), D-2 (validator), joint reviews, a pin of an approved Core contract version if one is consumed (the Sense contract 0.1.0 is pinned in the criteria).

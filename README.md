@@ -94,10 +94,10 @@ make check-readme   # check: structural check of this README only
 | Dependency | Direction | Kind | Contract | State |
 |---|---|---|---|---|
 | kritva-core | upstream | planned contract use; no Git submodule, build or runtime link | approved platform contract (planned) | PLANNED: no contract version is pinned and no source link exists |
-| kritva-sense | upstream | planned contract use; no Git submodule, build or runtime link | versioned Sense contract (planned) | PLANNED: Sense publishes an approved contract 0.1.0 (see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)); no version is pinned here yet |
+| kritva-sense | upstream | planned contract use; no Git submodule, build or runtime link | versioned Sense contract (planned) | PLANNED: Sense publishes an approved contract 0.1.0 (see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)); pinned in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 2 as Sense contract 0.1.0 (tag `v0.2.0`); still no source or build link |
 | kritva-skill | downstream consumer | planned contract use; no Git submodule, build or runtime link | uses the versioned Mind contract | PLANNED: no consumer exists |
 
-No dependency is established. The planned dependencies come from the repository's plan (kritva-core (approved contract), kritva-sense (versioned Sense contract)); exact versions or commit SHAs are to be recorded in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) when the contracts they refer to are approved, and none is pinned yet. Five kinds of relationship are kept apart: program ordering, Git submodule, source or build dependency, runtime integration, and governance or status reporting. A PLANNED dependency is not an integration that exists.
+No dependency is established. The planned dependencies come from the repository's plan (kritva-core (approved contract), kritva-sense (versioned Sense contract)); exact versions or commit SHAs are to be recorded in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) when the contracts they refer to are approved. Only the Sense contract 0.1.0 is pinned there (an owner decision, not an integration); no Core version is pinned. Five kinds of relationship are kept apart: program ordering, Git submodule, source or build dependency, runtime integration, and governance or status reporting. A PLANNED dependency is not an integration that exists.
 
 ## 8. Milestones and Implementation Plan
 
