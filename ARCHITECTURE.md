@@ -96,12 +96,22 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 | ID | Decision | Recommendation | Needs |
 |---|---|---|---|
 | D-1 | Contract encoding | JSON Schema with a pinned draft (2020-12); transport decided separately | owner decision |
-| D-2 | Validator implementation | not decided in KOS-MIND-001. The Python standard library has no full JSON Schema validator, so the choice is a pinned third-party validator or a limited dependency-free validator that documents unsupported features | owner decision in the validation task |
+| D-2 | Validator implementation | DECIDED (owner instruction "Decide D2" in chat, 2026-11-03; no separate approval record): a limited, dependency-free validator in the Python 3 standard library, for KOS-MIND-002. It supports only the keywords the contract schemas use and refuses any other keyword, so it cannot silently ignore one. Reasons: the repository and its CI are standard-library only, kritva-sense does the same, the schemas use a small keyword set, and error ordering stays under our control (AC-004). Safeguards in section 8.1 | none |
 | D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
 | D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: open, no approved contract consumed |
 | D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
 | D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
+
+### 8.1 Validator safeguards (D-2)
+
+- A keyword allowlist: a schema that uses a keyword the validator does not implement is rejected, never skipped. At the time of the decision the contract schemas use `$ref`, `$defs`, `type`, `enum`, `const`, `properties`, `required`, `additionalProperties`, `items`, `minItems`, `uniqueItems`, `minimum`, `minLength`, `maxLength`, `pattern`, `propertyNames`, `dependentRequired`, `allOf`, `anyOf`, `not`, `if`/`then` and `format` (`date-time` only).
+- Local resolution of the `urn:` schema identifiers; no network access.
+- `format` is asserted for `date-time` (RFC 3339), which a default `jsonschema` run does not do.
+- Reports every violation, sorted by path then code, so the same input gives the same outcome (AC-004).
+- Every example in `examples/manifest.json` must give its expected outcome.
+- An optional differential test against `jsonschema` when it is installed; without it the test is reported SKIPPED and never counted as a pass.
+- Limit: this validator is not a complete JSON Schema implementation and does not show a result is correct or safe. A new keyword in a schema needs a validator change in the same PR.
 
 ## 9. Out of scope
 
