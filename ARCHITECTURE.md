@@ -2,7 +2,7 @@
 
 Status: PROPOSED. This document is a design proposal for task KOS-MIND-001. It is not approved, it is not an interface that other repositories may rely on, and it creates no baseline, weight or credit. The architecture reviewer role is held by the owner on an interim basis (program decision D-047), so a review of this document is not independent review.
 
-Origin: an architecture discussion held outside this repository (a ChatGPT conversation, 2026-11-02) that the owner agreed with in chat. Statements about other repositories (kritva-core, kritva-sense, kritva-skill, kritva-motion) are assumptions to be checked against those repositories; nothing here has been verified against them.
+Origin: an architecture discussion held outside this repository (a ChatGPT conversation, 2026-11-02) that the owner agreed with in chat. Other repositories were read from their public `main` branches on 2026-11-02 and 2026-11-03 (kritva-sense, kritva-core, kritva-skill, kritva-program and, in part, kritva-motion): see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md). They were read, not run, and nobody on those sides has reviewed this document.
 
 ## 1. Purpose
 
@@ -43,7 +43,7 @@ Request (task, goals, constraints)
    + Context (identity, state, history; Sense observations via the versioned Sense contract)
         |
         v
-   Mind Core --> Reasoning / Planning / Knowledge --> proposal
+   Mind Core --> Reasoning adapter (planning and knowledge are deferred, outside this repository) --> proposal
         |
         v
    Mind Validation (schema, constraints, uncertainty, errors)
@@ -81,7 +81,7 @@ Field names and encodings are proposals until KOS-MIND-001 is approved. The enco
 | Repository | Direction | Intended relationship | Status |
 |---|---|---|---|
 | kritva-core | upstream | platform contract use | no approved version pinned |
-| kritva-sense | upstream | observations enter context through the versioned Sense contract | Sense has no contract yet |
+| kritva-sense | upstream | observations enter context through the versioned Sense contract | Sense contract 0.1.0 is pinned (tag `v0.2.0`); the observation and freshness mapping is drafted and not reviewed by Sense |
 | kritva-skill | downstream | consumes the Mind result; owns execution authority | no consumer exists; the contract must be reviewed with Skill |
 | kritva-motion | none direct | Mind has no interface to Motion | by design |
 
@@ -95,13 +95,13 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 
 | ID | Decision | Recommendation | Needs |
 |---|---|---|---|
-| D-1 | Contract encoding | JSON Schema with a pinned draft (2020-12); transport decided separately | owner decision |
+| D-1 | Contract encoding | ADOPTED IN THE DRAFT: the merged schemas use JSON Schema draft 2020-12 (pull requests 10 to 18, merged by the owner). No explicit decision record exists, so the owner is asked to confirm it; transport is decided separately | owner to confirm |
 | D-2 | Validator implementation | DECIDED (owner instruction "Decide D2" in chat, 2026-11-03; no separate approval record): a limited, dependency-free validator in the Python 3 standard library, for KOS-MIND-002. It supports only the keywords the contract schemas use and refuses any other keyword, so it cannot silently ignore one. Reasons: the repository and its CI are standard-library only, kritva-sense does the same, the schemas use a small keyword set, and error ordering stays under our control (AC-004). Safeguards in section 8.1 | none |
 | D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
 | D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: no Core contract is consumed (confirmed by the owner in chat, 2026-11-03; see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)) |
 | D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
-| D-8 | Authentication of Mind callers | proposed: outside the Mind request schema; the platform boundary authenticates and Skill independently authorizes (see COMPATIBILITY.md); DECIDED by the owner in chat, 2026-11-03 (C-5); no separate approval record | none |
+| D-8 | Authentication of Mind callers | DECIDED by the owner in chat, 2026-11-03 (C-5): outside the Mind request schema; the platform boundary authenticates and Skill independently authorizes; no separate approval record | none |
 | D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
 
 ### 8.1 Validator safeguards (D-2)
@@ -122,20 +122,13 @@ Sensing, motion control, skill orchestration and execution authority, platform f
 
 The owner stated in chat (2026-11-02) that kritva-program is the program authority, as [AGENTS.md](AGENTS.md) says. An outside discussion had claimed that `kritva-enterprise-program` is the program record; this repository does not rely on that claim. The statement is not yet recorded in kritva-program itself, so it is an owner statement and not a verified program decision.
 
-## 11. Draft contract fields (for review before any schema is written)
+## 11. Contract summary
 
-Drafted in an outside discussion; not verified against kritva-sense or kritva-skill and not approved. Names and types may change in KOS-MIND-001.
+The schemas in [contract/](contract/README.md) are the current draft of the contract; this section no longer repeats their fields, so there is one source. Rules that JSON Schema cannot express (cancellation, context lifecycle transitions, version-constraint semantics, proposal ordering and uniqueness, replay evidence) are in [contract/SEMANTICS.md](contract/SEMANTICS.md). All of it is proposed, not accepted, and no validator exists yet.
 
-| Schema | Required | Optional |
-|---|---|---|
-| mind-request | contract_version, request_id, intent, input (object), context_ref (context_id, revision) | constraints, requested_output, created_at, correlation_id |
-| mind-context | context_id, revision (integer), lifecycle_state (CREATED, ACTIVE, SNAPSHOTTED, CLOSED, EXPIRED), created_at, updated_at; at least one of content or snapshot_ref | source_refs, metadata |
-| mind-result | contract_version, result_id, request_id, context_ref, status (COMPLETED, PARTIAL, FAILED, CANCELLED), completeness (COMPLETE, PARTIAL, INCOMPLETE), proposed_skills (may be empty), uncertainty, provenance | errors |
-| ProposedSkill | skill_id, parameters | version_constraint, preconditions, rationale, priority, uncertainty |
+## 12. Joint reviews
 
-A context update creates a new revision and never overwrites the context an earlier request used. `random_seed` in the execution record is optional. The first schemas ([contract/](contract/README.md)) merge `status` and `completeness` into `status` plus `missing[]`; that is a proposal for review.
-
-## 12. Questions for the joint reviews
+The questions below were put to the neighbouring repositories. Skill's answers are in its proposed design note (kritva-skill `docs/design/MIND_SKILL_INTERFACE.md`) and are mapped in [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md); the joint review is not complete.
 
 **kritva-sense:** which Sense contract version and schema Mind consumes, and how compatibility is managed; which fields carry observations, timestamps, source identity and uncertainty; how stale, missing, partial, invalid and unavailable observations are represented; whether Mind can keep a reference and digest of the original input; ownership and lifecycle of data passed into context.
 

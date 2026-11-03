@@ -197,7 +197,7 @@
       "additionalProperties": false
     },
     "ExecutionRecord": {
-      "description": "Reasoning execution record: enough to reconstruct recorded conditions, verify input and output digests and classify replay fidelity. Only the replay class and the input are always required, so a request that failed or was cancelled before any inference ran can still be recorded without invented model or output data. A COMPLETED or PARTIAL result must carry the full record (see mind-result).",
+      "description": "Reasoning execution record: enough to reconstruct recorded conditions, verify input and output digests and classify replay fidelity. Only the replay class and the input are always required, so a request that failed or was cancelled before any inference ran can still be recorded without invented model or output data. A COMPLETED or PARTIAL result must carry the full record (see mind-result). input, output and context_snapshot, when present, carry a digest so integrity can be verified. A COMPLETED or PARTIAL result must also carry a context_snapshot (see mind-result).",
       "type": "object",
       "properties": {
         "replay_class": {
@@ -208,10 +208,18 @@
           ]
         },
         "input": {
-          "$ref": "#/$defs/Reference"
+          "$ref": "#/$defs/Reference",
+          "required": [
+            "ref",
+            "digest"
+          ]
         },
         "context_snapshot": {
-          "$ref": "#/$defs/Reference"
+          "$ref": "#/$defs/Reference",
+          "required": [
+            "ref",
+            "digest"
+          ]
         },
         "provider_id": {
           "type": "string",
@@ -237,7 +245,11 @@
           "type": "integer"
         },
         "output": {
-          "$ref": "#/$defs/Reference"
+          "$ref": "#/$defs/Reference",
+          "required": [
+            "ref",
+            "digest"
+          ]
         },
         "executed_at": {
           "$ref": "#/$defs/Timestamp"
@@ -251,6 +263,14 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "placement": {
+          "description": "Where the reasoning provider ran, when known: EDGE, NEXUS or CLOUD. Optional; a provider change is traceable through provider_id and, when recorded, placement.",
+          "enum": [
+            "EDGE",
+            "NEXUS",
+            "CLOUD"
+          ]
         }
       },
       "required": [
@@ -375,7 +395,7 @@
       "pattern": "^[a-z][a-z0-9_]{0,31}(\\.[a-z0-9_]{1,32}){0,3}$"
     },
     "VersionConstraint": {
-      "description": "Closed grammar: exact 1.2.3; caret ^1.2.0; range >=1.2.0 <2.0.0. No wildcards, tags or pre-release versions. A constraint selects among versions the consumer already holds; it is never a pin and never an approval.",
+      "description": "Closed grammar: exact 1.2.3; caret ^1.2.0; range >=1.2.0 <2.0.0. No wildcards, tags or pre-release versions. Semantics (normative for this contract, not left to a SemVer library default): exact matches only that version; caret ^X.Y.Z matches versions >= X.Y.Z with the same MAJOR when MAJOR is not 0, or with the same MINOR when MAJOR is 0; a range matches versions >= the lower bound and < the upper bound, and a range whose lower bound is not strictly below its upper bound is invalid (a validator rule; the pattern cannot express it). A constraint selects among versions the consumer already holds; it is never a pin and never an approval.",
       "type": "string",
       "pattern": "^((0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)|\\^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)|>=(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*) <(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))$"
     }
