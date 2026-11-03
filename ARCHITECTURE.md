@@ -74,7 +74,7 @@ Execution authority is not granted by Mind: the result has no `authorized` or `e
 
 Replay: validation is deterministic for identical inputs and validator version; inference may not be. The execution record lets a replay reconstruct the recorded conditions. The replay class is EXACT_REPLAY_SUPPORTED, CONDITION_REPLAY_ONLY or REPLAY_UNAVAILABLE. Exact equality is required only where the provider supports deterministic replay; otherwise a replay is labelled a comparison, not an exact reproduction. The original result stays immutable evidence.
 
-Field names and encodings are proposals until KOS-MIND-001 is approved. The encoding (JSON Schema, a pinned draft such as 2020-12) is decision D-1 in section 8.
+Field names and encodings are proposals until KOS-MIND-001 is approved. The encoding is JSON Schema draft 2020-12, decision D-1 in section 8 (decided by the owner in chat, 2026-11-03).
 
 ## 6. Interfaces with other repositories
 
@@ -95,7 +95,7 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 
 | ID | Decision | Recommendation | Needs |
 |---|---|---|---|
-| D-1 | Contract encoding | ADOPTED IN THE DRAFT: the merged schemas use JSON Schema draft 2020-12 (pull requests 10 to 18, merged by the owner). No explicit decision record exists, so the owner is asked to confirm it; transport is decided separately | owner to confirm |
+| D-1 | Contract encoding | DECIDED by the owner in chat, 2026-11-03 (no separate approval record): JSON Schema draft 2020-12, as in the merged schemas; transport is decided separately. A change of encoding is a contract change | none |
 | D-2 | Validator implementation | DECIDED (owner instruction "Decide D2" in chat, 2026-11-03; no separate approval record): a limited, dependency-free validator in the Python 3 standard library, for KOS-MIND-002. It supports only the keywords the contract schemas use and refuses any other keyword, so it cannot silently ignore one. Reasons: the repository and its CI are standard-library only, kritva-sense does the same, the schemas use a small keyword set, and error ordering stays under our control (AC-004). Safeguards in section 8.1 | none |
 | D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
 | D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
