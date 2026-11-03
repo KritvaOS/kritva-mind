@@ -11,7 +11,8 @@
     "result-replay-unavailable.json": "result",
     "context-with-observations.json": "context",
     "request-with-freshness.json": "request",
-    "result-partial-stale-input.json": "result"
+    "result-partial-stale-input.json": "result",
+    "result-two-proposals-with-constraints.json": "result"
   },
   "invalid": {
     "request-missing-context-ref.json": {
@@ -77,6 +78,30 @@
     "result-sense-error-code-as-mind-code.json": {
       "schema": "result",
       "reason": "a Sense code is not a Mind code; it goes in detail.sense_error_code"
+    },
+    "result-proposal-without-id.json": {
+      "schema": "result",
+      "reason": "every proposal needs a proposal_id"
+    },
+    "result-skill-id-uppercase.json": {
+      "schema": "result",
+      "reason": "skill_id must be a lowercase dotted name"
+    },
+    "result-version-constraint-latest.json": {
+      "schema": "result",
+      "reason": "version_constraint must follow the closed grammar; no tags"
+    },
+    "result-version-constraint-wildcard.json": {
+      "schema": "result",
+      "reason": "no wildcards in version_constraint"
+    },
+    "result-version-constraint-prerelease.json": {
+      "schema": "result",
+      "reason": "no pre-release versions in version_constraint"
+    },
+    "result-negative-priority.json": {
+      "schema": "result",
+      "reason": "priority starts at 0"
     }
   }
 }

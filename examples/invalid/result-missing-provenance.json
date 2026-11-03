@@ -9,6 +9,7 @@
   "status": "COMPLETED",
   "proposed_skills": [
     {
+      "proposal_id": "prop-001",
       "skill_id": "example.grasp",
       "version_constraint": ">=1.0.0 <2.0.0",
       "parameters": {

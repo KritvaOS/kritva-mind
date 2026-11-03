@@ -136,12 +136,18 @@
       "additionalProperties": false
     },
     "Precondition": {
+      "description": "An informational claim about what Mind assumed. Consumers do not evaluate `expression`. A precondition that a consumer must resolve or enforce names a consumer-defined one through precondition_id.",
       "type": "object",
       "properties": {
+        "precondition_id": {
+          "description": "Optional name of a precondition defined by the consumer (for Skill, in its manifest).",
+          "$ref": "#/$defs/Id"
+        },
         "description": {
           "type": "string"
         },
         "expression": {
+          "description": "Descriptive only; never evaluated by Mind or Skill.",
           "type": "object"
         }
       },
@@ -151,14 +157,17 @@
       "additionalProperties": false
     },
     "ProposedSkill": {
-      "description": "A recommendation to Skill. It is not an authorization: Skill resolves the reference, validates its manifest, version and preconditions, and decides.",
+      "description": "A recommendation to Skill. It is not an authorization: Skill resolves the reference, validates its manifest, version and preconditions, and decides. proposal_id is unique within a result (a rule a validator must check; JSON Schema cannot). priority orders candidates and nothing more: a lower value is preferred (0 first); equal priorities, and absent priorities, are ordered by ascending proposal_id; a proposal with no priority comes after every proposal that has one.",
       "type": "object",
       "properties": {
-        "skill_id": {
+        "proposal_id": {
           "$ref": "#/$defs/Id"
         },
+        "skill_id": {
+          "$ref": "#/$defs/SkillId"
+        },
         "version_constraint": {
-          "type": "string"
+          "$ref": "#/$defs/VersionConstraint"
         },
         "parameters": {
           "type": "object"
@@ -181,6 +190,7 @@
         }
       },
       "required": [
+        "proposal_id",
         "skill_id",
         "parameters"
       ],
@@ -358,6 +368,16 @@
         ]
       },
       "additionalProperties": false
+    },
+    "SkillId": {
+      "description": "Lowercase dotted skill name, the same shape as a Sense sensor_id. Stable across versions; never reused for a different skill.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,31}(\\.[a-z0-9_]{1,32}){0,3}$"
+    },
+    "VersionConstraint": {
+      "description": "Closed grammar: exact 1.2.3; caret ^1.2.0; range >=1.2.0 <2.0.0. No wildcards, tags or pre-release versions. A constraint selects among versions the consumer already holds; it is never a pin and never an approval.",
+      "type": "string",
+      "pattern": "^((0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)|\\^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)|>=(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*) <(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*))$"
     }
   }
 }
