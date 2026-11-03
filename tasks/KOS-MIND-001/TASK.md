@@ -25,10 +25,16 @@ Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed
 3. D-1 (JSON Schema 2020-12) is decided by the owner in chat, 2026-11-03, with no separate approval record; the owner may record it more formally at closure.
 4. Review records from the code owner and the architecture reviewer (both the owner on an interim basis, D-047, not independent).
 5. Criteria review: each of AC-001 to AC-011 given a disposition with evidence. None is marked met by a document review alone; criteria that need KOS-MIND-002 or later tasks stay NOT_IMPLEMENTED.
-6. The ingress-authentication gap (no platform boundary is specified) recorded as a known limitation of `v0.1.0`; whether it blocks the tag is the owner's decision.
+6. The ingress-authentication gap (no platform boundary is specified) is recorded as a known limitation of `v0.1.0`, not a blocker: decided by the owner in chat, 2026-11-03, with no separate approval record. It permits a contract release, not unrestricted deployment. Wording below.
 7. Exact closing commit SHA, the merge pull request and the CI run IDs of `secret-scan`, `commit-message-check` and `pr-acceptance-gate` on that commit.
 8. `make check`, `make docs-check` and `make check-readme` results recorded; `make test-unit`, `make test-integration` and `make test-regression` reported as NOT_IMPLEMENTED, never as passes.
 9. Completion record drafted and approved by the owner; the annotated tag created only after the approved merge. A tag does not close V2-M1.
+
+## Known limitation and release-note text (draft)
+
+Known limitation — ingress authentication: Mind v0.1.0 does not authenticate request callers and does not carry caller identity or authentication assertions in its request schema. Authentication and authorization are the responsibility of the platform or transport boundary, consistent with owner decision C-5. That boundary, including trusted-principal propagation and enforcement, is not yet specified or verified by KOS-MIND-001. Deployments MUST NOT expose Mind ingress to untrusted callers until the platform boundary is defined, implemented and reviewed. Skill's independent authorization of execution does not replace authentication and authorization at Mind ingress.
+
+Validation limitation (for the release notes): kritva-mind v0.1.0 is a contract release. It defines JSON Schema 2020-12 request, context and result schemas and the associated semantic rules. No executable Mind contract validator is included in this release. Semantic rules that JSON Schema cannot express, including cancellation, context lifecycle transitions, version-constraint semantics, proposal ordering and uniqueness, have not been checked by an implementation. Validator implementation and automated schema and semantic tests are deferred to KOS-MIND-002. Integration, provider conformance, disconnected-operation and replay-comparison testing are deferred to later tasks. This tag does not claim runtime, provider, Skill execution, hardware or safety validation, independent review or V2-M1 completion.
 
 ## Out of scope
 

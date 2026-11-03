@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Ingress authentication recorded as a known limitation of the planned `v0.1.0`, not a blocker, on the owner's chat instruction; limitation and validation-limitation release-note text drafted in `tasks/KOS-MIND-001/TASK.md` (Task: KOS-MIND-001). No separate approval record.
 - Decision D-1 recorded on the owner's chat instruction: the contract encoding is JSON Schema draft 2020-12 (Task: KOS-MIND-001). No separate approval record exists.
 - Contract 0.1.0-draft sync after an external review: execution record `input`, `output` and `context_snapshot` require digests, COMPLETED and PARTIAL results require a context snapshot, optional `placement`, a FAILED result needs an ERROR-severity error; new `contract/SEMANTICS.md`; AC-003 and AC-008 to AC-011 reworded (operational tests assigned to KOS-MIND-003); stale architecture, compatibility and README text refreshed; D-1 marked adopted pending owner confirmation, D-8 marked decided; 7 valid and 6 invalid examples added (Task: KOS-MIND-001). Draft changes; nothing is accepted or released.
 - Decision C-5 recorded on the owner's chat instruction: no Core contract is consumed and authentication stays outside the Mind request (Task: KOS-MIND-001). The ingress authentication mechanism is not specified anywhere yet.

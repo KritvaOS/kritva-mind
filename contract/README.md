@@ -30,6 +30,7 @@ Task: KOS-MIND-001. These JSON Schemas (JSON Schema draft 2020-12) describe the 
 
 ## Limits
 
+- Ingress authentication is a recorded known limitation: Mind does not authenticate callers, the platform boundary is not yet specified, and Mind must not be exposed to untrusted callers until it is (see [COMPATIBILITY.md](COMPATIBILITY.md)).
 - Schema validity is not safety, and a score is not evidence of correctness.
 - `format` (for example `date-time`) is only an annotation unless the validator is configured to assert it. Which validator and settings are used is open decision D-2, for KOS-MIND-002.
 - No validator exists in this repository, so `make test-unit` is still NOT_IMPLEMENTED. The schemas were checked once by hand with a third-party validator against throwaway samples; that is not a test gate and is not evidence for any criterion.
