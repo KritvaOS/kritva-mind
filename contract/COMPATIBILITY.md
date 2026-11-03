@@ -22,6 +22,8 @@ Checked on 2026-11-02 against the public repositories on GitHub; nothing was run
 | Units and frames | SI units, frames `world`, `base`, `sensor`, no transforms | measurement content is opaque `content` | Mind does not re-define units or frames; any measurement inside `content` must follow the Sense contract. |
 | Extensibility | unknown fields rejected | unknown fields rejected in all Mind schemas except `constraints` | `constraints` allows extra fields; decide whether that is intended. |
 
+**Drafted after the Sense review (proposals, not accepted; the owner's dispositions are still pending in the draft Sense review record `planning/reviews/KOS-MIND-001-SENSE-REVIEW.md`, pull request 22).** `ObservationRef` gained an optional `sense_error_code`; the Sense-to-Mind error mapping, the `usable` rule, the version check and "Mind applies Sense section 6.1 unchanged" are written in [SEMANTICS.md](SEMANTICS.md) section 6; the `max_age_ns` minimum was lowered to 0 so Mind is not stricter than Sense.
+
 ## Skill (kritva-skill)
 
 **State found (2026-11-03).** Skill's pull request 9 is merged: KOS-SKILL-001 is IN_PROGRESS on the owner's chat instruction and `docs/design/MIND_SKILL_INTERFACE.md` is on its `main`. That note is a proposal, not an approved contract, and there is still no Skill manifest or execution schema to check a Mind result against. It answers the questions below as proposals and asked Mind for seven changes. Status of those changes in the Mind draft:

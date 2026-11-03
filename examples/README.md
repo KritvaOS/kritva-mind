@@ -21,6 +21,7 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-partial-stale-input.json](valid/result-partial-stale-input.json) | result |
 | [result-two-proposals-with-constraints.json](valid/result-two-proposals-with-constraints.json) | result |
 | [result-completed-edge-with-warning.json](valid/result-completed-edge-with-warning.json) | result |
+| [request-with-zero-max-age.json](valid/request-with-zero-max-age.json) | request |
 
 ## Invalid
 
@@ -54,7 +55,12 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-completed-without-context-snapshot.json](invalid/result-completed-without-context-snapshot.json) | result | COMPLETED needs a context snapshot for replay |
 | [result-failed-with-only-warning.json](invalid/result-failed-with-only-warning.json) | result | FAILED needs at least one error of severity ERROR |
 | [result-placement-unknown-value.json](invalid/result-placement-unknown-value.json) | result | placement is EDGE, NEXUS or CLOUD |
+| [context-valid-observation-with-sense-error-code.json](invalid/context-valid-observation-with-sense-error-code.json) | context | a VALID observation must not carry sense_error_code (Sense forbids error_code when VALID) |
+| [context-sense-error-code-lowercase.json](invalid/context-sense-error-code-lowercase.json) | context | sense_error_code is an upper-case Sense code |
+| [request-id-with-space.json](invalid/request-id-with-space.json) | request | identifiers use only A-Z a-z 0-9 . _ : - |
+| [result-id-too-long.json](invalid/result-id-too-long.json) | result | identifiers are at most 128 characters |
+| [result-proposal-id-slash.json](invalid/result-proposal-id-slash.json) | result | proposal_id uses the same identifier character set |
 
 ## What this is not
 
-No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the digest, placement and error changes). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.
+No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the observation, identifier and `max_age_ns` changes). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.

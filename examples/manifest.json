@@ -13,7 +13,8 @@
     "request-with-freshness.json": "request",
     "result-partial-stale-input.json": "result",
     "result-two-proposals-with-constraints.json": "result",
-    "result-completed-edge-with-warning.json": "result"
+    "result-completed-edge-with-warning.json": "result",
+    "request-with-zero-max-age.json": "request"
   },
   "invalid": {
     "request-missing-context-ref.json": {
@@ -127,6 +128,26 @@
     "result-placement-unknown-value.json": {
       "schema": "result",
       "reason": "placement is EDGE, NEXUS or CLOUD"
+    },
+    "context-valid-observation-with-sense-error-code.json": {
+      "schema": "context",
+      "reason": "a VALID observation must not carry sense_error_code (Sense forbids error_code when VALID)"
+    },
+    "context-sense-error-code-lowercase.json": {
+      "schema": "context",
+      "reason": "sense_error_code is an upper-case Sense code"
+    },
+    "request-id-with-space.json": {
+      "schema": "request",
+      "reason": "identifiers use only A-Z a-z 0-9 . _ : -"
+    },
+    "result-id-too-long.json": {
+      "schema": "result",
+      "reason": "identifiers are at most 128 characters"
+    },
+    "result-proposal-id-slash.json": {
+      "schema": "result",
+      "reason": "proposal_id uses the same identifier character set"
     }
   }
 }
