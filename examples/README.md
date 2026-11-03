@@ -20,6 +20,7 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [request-with-freshness.json](valid/request-with-freshness.json) | request |
 | [result-partial-stale-input.json](valid/result-partial-stale-input.json) | result |
 | [result-two-proposals-with-constraints.json](valid/result-two-proposals-with-constraints.json) | result |
+| [result-completed-edge-with-warning.json](valid/result-completed-edge-with-warning.json) | result |
 
 ## Invalid
 
@@ -47,7 +48,13 @@ Valid examples must pass their schema; invalid examples must fail it, and each f
 | [result-version-constraint-wildcard.json](invalid/result-version-constraint-wildcard.json) | result | no wildcards in version_constraint |
 | [result-version-constraint-prerelease.json](invalid/result-version-constraint-prerelease.json) | result | no pre-release versions in version_constraint |
 | [result-negative-priority.json](invalid/result-negative-priority.json) | result | priority starts at 0 |
+| [result-input-without-digest.json](invalid/result-input-without-digest.json) | result | the execution record input needs a digest |
+| [result-output-without-digest.json](invalid/result-output-without-digest.json) | result | the execution record output needs a digest |
+| [result-context-snapshot-without-digest.json](invalid/result-context-snapshot-without-digest.json) | result | a context snapshot needs a digest |
+| [result-completed-without-context-snapshot.json](invalid/result-completed-without-context-snapshot.json) | result | COMPLETED needs a context snapshot for replay |
+| [result-failed-with-only-warning.json](invalid/result-failed-with-only-warning.json) | result | FAILED needs at least one error of severity ERROR |
+| [result-placement-unknown-value.json](invalid/result-placement-unknown-value.json) | result | placement is EDGE, NEXUS or CLOUD |
 
 ## What this is not
 
-No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the proposal field changes). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.
+No validator is part of this repository and no test runs these examples, so `make test-unit` is still NOT_IMPLEMENTED and these files are not evidence for any criterion. On 2026-11-02 they were checked once, by hand, with a third-party JSON Schema validator: all valid examples passed and all invalid examples were rejected (re-checked after the digest, placement and error changes). `format` was not asserted, so timestamp formats are not covered. Automated checking belongs to KOS-MIND-002.

@@ -12,7 +12,8 @@
     "context-with-observations.json": "context",
     "request-with-freshness.json": "request",
     "result-partial-stale-input.json": "result",
-    "result-two-proposals-with-constraints.json": "result"
+    "result-two-proposals-with-constraints.json": "result",
+    "result-completed-edge-with-warning.json": "result"
   },
   "invalid": {
     "request-missing-context-ref.json": {
@@ -102,6 +103,30 @@
     "result-negative-priority.json": {
       "schema": "result",
       "reason": "priority starts at 0"
+    },
+    "result-input-without-digest.json": {
+      "schema": "result",
+      "reason": "the execution record input needs a digest"
+    },
+    "result-output-without-digest.json": {
+      "schema": "result",
+      "reason": "the execution record output needs a digest"
+    },
+    "result-context-snapshot-without-digest.json": {
+      "schema": "result",
+      "reason": "a context snapshot needs a digest"
+    },
+    "result-completed-without-context-snapshot.json": {
+      "schema": "result",
+      "reason": "COMPLETED needs a context snapshot for replay"
+    },
+    "result-failed-with-only-warning.json": {
+      "schema": "result",
+      "reason": "FAILED needs at least one error of severity ERROR"
+    },
+    "result-placement-unknown-value.json": {
+      "schema": "result",
+      "reason": "placement is EDGE, NEXUS or CLOUD"
     }
   }
 }

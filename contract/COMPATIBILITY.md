@@ -38,15 +38,7 @@ Checked on 2026-11-02 against the public repositories on GitHub; nothing was run
 
 Open on the Skill side, not decided here: where skill-version approval is recorded, the authorization policy, the precondition check vocabulary, who may cancel a run, and the mapping between Skill's run lifecycle and Motion's public command states. The joint review is not complete: nobody but the owner has reviewed either side.
 
-**Questions to put to kritva-skill (from [ARCHITECTURE.md](../ARCHITECTURE.md) section 12)**
-
-1. What is the canonical skill identity and version-reference format, and can Mind propose a version constraint without pinning an unapproved version?
-2. What does Skill need to resolve a proposal against its manifest?
-3. What parameter schema and precondition format does Skill expect (the Mind draft uses `parameters` as an object and `preconditions` as descriptions with an optional expression)?
-4. Which validations are Mind's, and which does Skill repeat before execution?
-5. How does Skill handle rejected proposals, unmet preconditions, cancellation, partial execution and failure?
-6. What does Skill return to keep traceability from proposal to execution?
-7. Does Skill confirm that Mind proposes and Skill independently validates and authorizes?
+**Skill's proposed answers (design note, not approved).** Mind proposes; Skill independently resolves, validates and authorizes. Skill treats uncertainty, rationale and priority as advisory, rejects proposals of FAILED and CANCELLED results, and rejects PARTIAL ones by default. Proposal disposition (rejected or accepted) and the run lifecycle are separate state machines. Skill keeps its own run states (loaded, running, completed, cancelled, failed) and reason codes; these are not Motion's public command states (ACCEPTED, RUNNING, COMPLETED, CANCELLED, FAILED), and the mapping between them is not designed yet. Mind has no direct interface to Motion. The note's own text still lists fields that Mind has since added as gaps, and it uses two names for one rejection code (`VERSION_UNAVAILABLE` and `SKILL_VERSION_UNAVAILABLE`); both need a Skill-side update.
 
 ## Core (kritva-core)
 
@@ -67,5 +59,5 @@ The Mind request JSON carries no caller identity and does not authenticate its c
 | C-1 | Record Sense contract 0.1.0 as a normative dependency, and the tag or SHA that identifies it | DECIDED by the owner in chat, 2026-11-02: contract 0.1.0 at tag `v0.2.0` (commit `543f574`); recorded in [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 2 |
 | C-2 | How observation references carry clock, value and validity | DRAFTED in the schemas (`observations[]`); needs a check by the Sense owner |
 | C-3 | Where `max_age_ns` is declared and what error codes Mind defines for stale, missing and invalid input | DRAFTED in the schemas (`constraints.freshness`, error code enum); needs review |
-| C-4 | Start KOS-SKILL-001 so the joint review can happen | DECIDED by the owner in chat, 2026-11-03: started on a local branch in kritva-skill (not yet pushed or reviewed here) |
+| C-4 | Start KOS-SKILL-001 so the joint review can happen | DECIDED by the owner in chat, 2026-11-03: KOS-SKILL-001 is started and its design note is merged in kritva-skill (pull request 9) as a proposal; the joint review is not complete |
 | C-5 | Confirm that Mind consumes no Core contract and that authentication stays outside the Mind request | DECIDED by the owner in chat, 2026-11-03; no separate approval record. Ingress authentication is still unspecified and sits with the platform security boundary |

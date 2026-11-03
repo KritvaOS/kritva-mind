@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:kritva:mind:contract:result:0.1.0",
   "title": "Mind result",
-  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. provenance is always present; a COMPLETED or PARTIAL result must carry the full execution record, while a FAILED or CANCELLED result may carry an attempt-only record (replay class and input) when no inference ran. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[]. The proposals of a PARTIAL result are advisory: missing[] lists what Mind lacked, and a consumer must not execute them unless its own policy says so explicitly (Skill's proposed default is to reject them). Proposals of a FAILED or CANCELLED result are not to be executed.",
+  "description": "PROPOSED (KOS-MIND-001, contract 0.1.0-draft). The outcome of a request: a proposal, never an authorization or a motor command. There is deliberately no field that tells Skill to execute. provenance is always present; a COMPLETED or PARTIAL result must carry the full execution record, while a FAILED or CANCELLED result may carry an attempt-only record (replay class and input) when no inference ran. status is the single completeness indicator; a PARTIAL or CANCELLED result lists what is missing in missing[]. The proposals of a PARTIAL result are advisory: missing[] lists what Mind lacked, and a consumer must not execute them unless its own policy says so explicitly (Skill's proposed default is to reject them). Proposals of a FAILED or CANCELLED result are not to be executed. errors[] may appear with any status (warnings on a COMPLETED, PARTIAL or CANCELLED result are allowed); a FAILED result needs at least one error of severity ERROR.",
   "type": "object",
   "properties": {
     "contract_version": {
@@ -83,7 +83,17 @@
         ],
         "properties": {
           "errors": {
-            "minItems": 1
+            "minItems": 1,
+            "contains": {
+              "properties": {
+                "severity": {
+                  "const": "ERROR"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
           }
         }
       }
@@ -128,7 +138,8 @@
               "provider_id",
               "model_id",
               "output",
-              "executed_at"
+              "executed_at",
+              "context_snapshot"
             ]
           }
         }

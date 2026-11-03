@@ -13,9 +13,22 @@ Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC
 | 3 | [examples](../../examples/README.md); Sense compatibility notes and Skill review questions ([COMPATIBILITY.md](../../contract/COMPATIBILITY.md)) | merged (PR 11); later schema and doc fixes merged (PRs 12 to 15) |
 | 3a | align the plan with the program plan, fix stale notes, record the authentication boundary (proposed) | this change |
 | 3b | one schema PR for the Skill-requested changes (`proposal_id`, `skill_id` pattern and closed `version_constraint` grammar, `precondition_id`, `priority` direction, runtime-supplied schema rule, PARTIAL handling), with examples and a matching COMPATIBILITY.md; the Skill design note is merged in kritva-skill (PR 9) | this change (stacked on 3a) |
+| 3c | contract and criteria sync after the external review: digests and context snapshot required for replay, optional `placement`, FAILED needs an ERROR, new `contract/SEMANTICS.md` (cancellation, context lifecycle, version-constraint semantics, ordering), AC-003, AC-008 to AC-011 reworded, stale documents refreshed | this change |
 | 4 | criteria review, approvals, evidence on the exact closing commit, then the annotated tag `v0.1.0` after the approved merge | not started |
 
 Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed and agreed. The tag does not wait for Motion if Mind does not consume it. A Mind tag is not V2-M1 completion: V2-M1 closes only through its program completion record.
+
+## PR-4 checklist (proposed)
+
+1. Skill side updated against the current Mind contract in kritva-skill (its note still lists fields Mind has since added, and uses two names for one rejection code).
+2. Joint review recorded with kritva-skill (the proposal interface) and kritva-sense (observation and freshness mapping); decision D-6 closed only after it.
+3. Owner confirms D-1 (JSON Schema 2020-12) and records the decision.
+4. Review records from the code owner and the architecture reviewer (both the owner on an interim basis, D-047, not independent).
+5. Criteria review: each of AC-001 to AC-011 given a disposition with evidence. None is marked met by a document review alone; criteria that need KOS-MIND-002 or later tasks stay NOT_IMPLEMENTED.
+6. The ingress-authentication gap (no platform boundary is specified) recorded as a known limitation of `v0.1.0`; whether it blocks the tag is the owner's decision.
+7. Exact closing commit SHA, the merge pull request and the CI run IDs of `secret-scan`, `commit-message-check` and `pr-acceptance-gate` on that commit.
+8. `make check`, `make docs-check` and `make check-readme` results recorded; `make test-unit`, `make test-integration` and `make test-regression` reported as NOT_IMPLEMENTED, never as passes.
+9. Completion record drafted and approved by the owner; the annotated tag created only after the approved merge. A tag does not close V2-M1.
 
 ## Out of scope
 
