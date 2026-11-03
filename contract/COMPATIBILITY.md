@@ -52,6 +52,8 @@ The schemas now draft answers to the open points in the Sense table above: an `O
 
 The Mind request JSON carries no caller identity and does not authenticate its caller. Authentication belongs to the transport, gateway or platform security boundary, which may pass the authenticated principal as trusted envelope metadata for audit, never as a claim in the request payload. Mind does not trust caller-supplied identity fields. Skill independently authorizes a proposal and its target before execution. Motion's draft refers to a provisional identity assertion that Core has not defined; Mind does not invent it. Risk of the alternative: an identity field in Mind's schema would accept spoofable data and couple Mind to a format nobody has defined. Risk of this choice: Mind ingress must be authenticated by the platform, which is outside this repository and not yet specified.
 
+**Known limitation (decided by the owner in chat, 2026-11-03; no separate approval record).** Mind v0.1.0 does not authenticate request callers and does not carry caller identity or authentication assertions in its request schema. Authentication and authorization are the responsibility of the platform or transport boundary, consistent with owner decision C-5. That boundary, including trusted-principal propagation and enforcement, is not yet specified or verified by KOS-MIND-001. Deployments MUST NOT expose Mind ingress to untrusted callers until the platform boundary is defined, implemented and reviewed. Skill's independent authorization of execution does not replace authentication and authorization at Mind ingress.
+
 ## Decisions this review needs
 
 | ID | Decision | Owner |
