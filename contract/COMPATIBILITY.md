@@ -50,13 +50,13 @@ Open on the Skill side, not decided here: where skill-version approval is record
 
 ## Core (kritva-core)
 
-No Core contract version is pinned or consumed by the draft schemas, and this repository does not import Core. The program pipeline lists Core as a Mind dependency in program ordering; that does not by itself mean Mind consumes a Core contract. Core's `docs/security/TRUST_BOUNDARIES.md` states that Core does not authenticate entities, so there is no Core authentication contract to consume (read 2026-11-03). Proposed: record that no Core contract pin is needed for this interface, and let the owner confirm or amend the program dependency.
+No Core contract version is pinned or consumed by the draft schemas, and this repository does not import Core. The program pipeline lists Core as a Mind dependency in program ordering; that does not by itself mean Mind consumes a Core contract. Core's `docs/security/TRUST_BOUNDARIES.md` states that Core does not authenticate entities, so there is no Core authentication contract to consume (read 2026-11-03). Confirmed by the owner in chat on 2026-11-03 (C-5): no Core contract pin is needed for this interface. The program's pipeline still lists Core as a dependency in program ordering; amending that entry is the owner's decision in kritva-program and is not done here.
 
 ## Drafted after the first review
 
 The schemas now draft answers to the open points in the Sense table above: an `ObservationRef` carrying sensor identity, sequence, clock, timestamp in nanoseconds, validity, a `usable` flag and the Sense contract version; a `FreshnessPolicy` in request constraints; and a closed list of Mind error codes with Sense codes kept in `detail.sense_error_code`. These are proposals. Nobody on the Sense side has reviewed them, and the Sense contract was read, not run.
 
-## Authentication boundary (proposed)
+## Authentication boundary (decided by the owner, C-5)
 
 The Mind request JSON carries no caller identity and does not authenticate its caller. Authentication belongs to the transport, gateway or platform security boundary, which may pass the authenticated principal as trusted envelope metadata for audit, never as a claim in the request payload. Mind does not trust caller-supplied identity fields. Skill independently authorizes a proposal and its target before execution. Motion's draft refers to a provisional identity assertion that Core has not defined; Mind does not invent it. Risk of the alternative: an identity field in Mind's schema would accept spoofable data and couple Mind to a format nobody has defined. Risk of this choice: Mind ingress must be authenticated by the platform, which is outside this repository and not yet specified.
 
@@ -68,4 +68,4 @@ The Mind request JSON carries no caller identity and does not authenticate its c
 | C-2 | How observation references carry clock, value and validity | DRAFTED in the schemas (`observations[]`); needs a check by the Sense owner |
 | C-3 | Where `max_age_ns` is declared and what error codes Mind defines for stale, missing and invalid input | DRAFTED in the schemas (`constraints.freshness`, error code enum); needs review |
 | C-4 | Start KOS-SKILL-001 so the joint review can happen | DECIDED by the owner in chat, 2026-11-03: started on a local branch in kritva-skill (not yet pushed or reviewed here) |
-| C-5 | Confirm that Mind consumes no Core contract and that authentication stays outside the Mind request | owner |
+| C-5 | Confirm that Mind consumes no Core contract and that authentication stays outside the Mind request | DECIDED by the owner in chat, 2026-11-03; no separate approval record. Ingress authentication is still unspecified and sits with the platform security boundary |
