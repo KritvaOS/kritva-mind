@@ -8,7 +8,7 @@ Checked on 2026-11-02 against the public repositories on GitHub; nothing was run
 
 **State found.** Sense publishes `contract/SENSE_CONTRACT.md` (contract 0.1.0) with `contract/sense-sample.schema.json`. Its status line says the owner approved contract 0.1.0 under the interim D-047 review, and the repository has tags `v0.1.0` and `v0.2.0`. It states that it remains a 0.x contract that can change with a changelog entry and a decision. This contradicts the wording in this repository's README ("Sense has no contract yet"), which is out of date.
 
-**Pin.** Not made here. [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 2 says a version is recorded when the contract it names is approved; the owner decides whether to record Sense contract 0.1.0 (and which tag or commit SHA identifies it) in a separate change.
+**Pin.** Made on the owner's instruction in chat, 2026-11-02: Sense contract 0.1.0 at tag `v0.2.0` (commit `543f5743d6ffd8fa1ed1ee5fdbf8295ae6a69a77`), recorded in [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 2. The draft schemas do not enforce the version.
 
 **Compatibility with the draft Mind contract**
 
@@ -38,11 +38,15 @@ Checked on 2026-11-02 against the public repositories on GitHub; nothing was run
 
 ## Core (kritva-core)
 
-No Core contract version is pinned or consumed by the draft schemas. Not reviewed beyond confirming that this repository does not import it.
+No Core contract version is pinned or consumed by the draft schemas, and this repository does not import Core. The program pipeline lists Core as a Mind dependency in program ordering; that does not by itself mean Mind consumes a Core contract. Core's `docs/security/TRUST_BOUNDARIES.md` states that Core does not authenticate entities, so there is no Core authentication contract to consume (read 2026-11-03). Proposed: record that no Core contract pin is needed for this interface, and let the owner confirm or amend the program dependency.
 
 ## Drafted after the first review
 
 The schemas now draft answers to the open points in the Sense table above: an `ObservationRef` carrying sensor identity, sequence, clock, timestamp in nanoseconds, validity, a `usable` flag and the Sense contract version; a `FreshnessPolicy` in request constraints; and a closed list of Mind error codes with Sense codes kept in `detail.sense_error_code`. These are proposals. Nobody on the Sense side has reviewed them, and the Sense contract was read, not run.
+
+## Authentication boundary (proposed)
+
+The Mind request JSON carries no caller identity and does not authenticate its caller. Authentication belongs to the transport, gateway or platform security boundary, which may pass the authenticated principal as trusted envelope metadata for audit, never as a claim in the request payload. Mind does not trust caller-supplied identity fields. Skill independently authorizes a proposal and its target before execution. Motion's draft refers to a provisional identity assertion that Core has not defined; Mind does not invent it. Risk of the alternative: an identity field in Mind's schema would accept spoofable data and couple Mind to a format nobody has defined. Risk of this choice: Mind ingress must be authenticated by the platform, which is outside this repository and not yet specified.
 
 ## Decisions this review needs
 
@@ -51,4 +55,5 @@ The schemas now draft answers to the open points in the Sense table above: an `O
 | C-1 | Record Sense contract 0.1.0 as a normative dependency, and the tag or SHA that identifies it | DECIDED by the owner in chat, 2026-11-02: contract 0.1.0 at tag `v0.2.0` (commit `543f574`); recorded in [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 2 |
 | C-2 | How observation references carry clock, value and validity | DRAFTED in the schemas (`observations[]`); needs a check by the Sense owner |
 | C-3 | Where `max_age_ns` is declared and what error codes Mind defines for stale, missing and invalid input | DRAFTED in the schemas (`constraints.freshness`, error code enum); needs review |
-| C-4 | Start KOS-SKILL-001 so the joint review can happen | owner |
+| C-4 | Start KOS-SKILL-001 so the joint review can happen | DECIDED by the owner in chat, 2026-11-03: started on a local branch in kritva-skill (not yet pushed or reviewed here) |
+| C-5 | Confirm that Mind consumes no Core contract and that authentication stays outside the Mind request | owner |
