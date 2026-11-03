@@ -21,7 +21,7 @@ Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed
 ## PR-4 checklist (proposed)
 
 1. Skill side updated against the current Mind contract in kritva-skill (its note still lists fields Mind has since added, and uses two names for one rejection code).
-2. Joint review recorded with kritva-skill (the proposal interface) and kritva-sense (observation and freshness mapping); decision D-6 closed only after it.
+2. Joint review recorded with kritva-skill (the proposal interface) and kritva-sense (observation and freshness mapping); decision D-6 closed only after it. Drafts, with every owner disposition PENDING: [Skill record](../../planning/reviews/KOS-MIND-001-SKILL-REVIEW.md) and [Sense record](../../planning/reviews/KOS-MIND-001-SENSE-REVIEW.md); both must be refreshed against the final merged revisions.
 3. D-1 (JSON Schema 2020-12) is decided by the owner in chat, 2026-11-03, with no separate approval record; the owner may record it more formally at closure.
 4. Review records from the code owner and the architecture reviewer (both the owner on an interim basis, D-047, not independent).
 5. Criteria review: each of AC-001 to AC-011 given a disposition with evidence. None is marked met by a document review alone; criteria that need KOS-MIND-002 or later tasks stay NOT_IMPLEMENTED.
