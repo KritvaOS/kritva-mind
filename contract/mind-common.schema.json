@@ -9,9 +9,9 @@
       "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"
     },
     "Id": {
+      "description": "Identifier of 1 to 128 characters from A-Z a-z 0-9 . _ : - (the same character set as Motion's identifiers, so an identifier can be reused in a Motion submission without encoding).",
       "type": "string",
-      "minLength": 1,
-      "maxLength": 128
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
     },
     "Timestamp": {
       "type": "string",
@@ -280,7 +280,7 @@
       "additionalProperties": false
     },
     "ObservationRef": {
-      "description": "A reference to one Sense sample, by identity and clock, never by embedding Sense internals. The measurements of a STALE, MISSING or INVALID sample are not usable as readings (Sense contract section 6), so usable must be false for them. Clocks are not comparable across monotonic and utc.",
+      "description": "A reference to one Sense sample, by identity and clock, never by embedding Sense internals. The measurements of a STALE, MISSING or INVALID sample are not usable as readings (Sense contract section 6), so usable must be false for them. Clocks are not comparable across monotonic and utc. Mind applies Sense contract sections 6 and 6.1 unchanged; the rules a schema cannot express (usable against freshness, error mapping, version check) are in SEMANTICS.md section 6.",
       "type": "object",
       "properties": {
         "sensor_id": {
@@ -319,6 +319,11 @@
         "source_contract": {
           "description": "Sense contract version the sample follows, for example 0.1.0.",
           "$ref": "#/$defs/ContractVersion"
+        },
+        "sense_error_code": {
+          "description": "The error_code Sense put on the sample, copied unchanged. Sense requires it when validity is not VALID and forbids it when VALID, so it is optional here and must be absent for a VALID observation. It is a Sense code and is never used as a Mind error code.",
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
         }
       },
       "required": [
@@ -348,15 +353,33 @@
           }
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "validity": {
+                "const": "VALID"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "sense_error_code"
+              ]
+            }
+          }
+        }
+      ]
     },
     "FreshnessPolicy": {
-      "description": "How Mind, as a consumer, judges freshness of Sense samples (Sense contract section 6.1): the maximum age in nanoseconds, with an optional per-sensor override. Freshness needs the consumer's now on the same clock as the sample; without it, freshness is not evaluated.",
+      "description": "How Mind, as a consumer, judges freshness of Sense samples (Sense contract section 6.1): the maximum age in nanoseconds, with an optional per-sensor override. Freshness needs the consumer's now on the same clock as the sample; without it, freshness is not evaluated. Sense states no minimum for max_age_ns, so none above 0 is imposed here.",
       "type": "object",
       "properties": {
         "max_age_ns": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 0
         },
         "per_sensor_max_age_ns": {
           "type": "object",
@@ -365,7 +388,7 @@
           },
           "additionalProperties": {
             "type": "integer",
-            "minimum": 1
+            "minimum": 0
           }
         },
         "clock": {

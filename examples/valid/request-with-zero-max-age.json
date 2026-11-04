@@ -1,0 +1,25 @@
+{
+  "contract_version": "0.1.0",
+  "request_id": "req-0001",
+  "intent": "hand me the cup on the table",
+  "input": {
+    "text": "hand me the cup"
+  },
+  "context_ref": {
+    "context_id": "ctx-0001",
+    "revision": 2
+  },
+  "constraints": {
+    "deadline": "2026-11-02T10:00:10Z",
+    "timeout_ms": 5000,
+    "freshness": {
+      "max_age_ns": 0,
+      "per_sensor_max_age_ns": {
+        "range.front": 0
+      },
+      "clock": "utc",
+      "now_ns": 1793613590100000000
+    }
+  },
+  "created_at": "2026-11-02T10:00:00Z"
+}

@@ -56,6 +56,32 @@ A context is a sequence of immutable revisions identified by `context_id` and `r
 - `placement` (EDGE, NEXUS or CLOUD) is optional and records where the provider ran when that is known.
 - Replay fidelity is stated by `replay_class`. Equality of outputs is required only for EXACT_REPLAY_SUPPORTED.
 
-## 6. What is not verified
+## 6. Observations from Sense (drafted after the Sense review)
+
+Proposals answering the findings of the draft Sense review record `planning/reviews/KOS-MIND-001-SENSE-REVIEW.md` (kritva-mind pull request 22, not merged when this was written). Not accepted.
+
+- **Sense rules apply unchanged.** Mind does not redefine Sense contract sections 6 and 6.1. Freshness is evaluated only when the consumer's now, its clock and `max_age_ns` are all given; an age equal to the limit is fresh; a sample newer than now, or from a different clock, is not usable (Sense `INVALID_TIMESTAMP`). Without a freshness policy, `usable` reflects validity only and Mind must not claim the observation is fresh.
+- **`usable` (validator rule).** `usable` is true only if the validity is VALID and, when freshness was evaluated, the sample is fresh and from the same clock. The schema forces `usable` false for STALE, MISSING and INVALID; the rest needs the freshness inputs and belongs to the validator.
+- **`sense_error_code`.** A STALE, MISSING or INVALID observation carries the Sense `error_code` unchanged in `sense_error_code` when it is known; a VALID observation never does. It is never used as a Mind error code.
+- **Error mapping.** When an input prevents or limits a result, the Mind error code and the Sense code in `detail.sense_error_code` are:
+
+| Sense error code | Mind code |
+|---|---|
+| `STALE_DATA` | `MIND_INPUT_STALE` |
+| `MISSING_DATA` | `MIND_INPUT_MISSING` |
+| `INVALID_DATA`, `INVALID_TIMESTAMP`, `SEQUENCE_REGRESSION`, `UNKNOWN_FRAME`, `INVALID_UNIT`, `NON_FINITE_VALUE`, `MISSING_FIELD`, `MALFORMED_FIELD`, `UNKNOWN_FIELD`, `INVALID_SENSOR_ID`, `INVALID_VALIDITY`, `UNSUPPORTED_CONTRACT_VERSION` | `MIND_INPUT_INVALID` |
+| any code not listed (for example from a later Sense version) | `MIND_INPUT_INVALID` |
+
+  When Mind itself finds an observation too old, it uses `MIND_INPUT_STALE` with `STALE_DATA`; a future or cross-clock timestamp is `MIND_INPUT_INVALID` with `INVALID_TIMESTAMP`.
+- **Version.** `source_contract` is the Sense contract version the sample follows. The schemas accept any SemVer string; a validator may reject a value other than the Sense contract version this Mind release names. The pinned version is recorded in the criteria, not enforced by the schemas.
+- **`max_age_ns`.** Sense states no minimum, so the schema imposes none above 0.
+
+## 7. Identifiers and digests
+
+- **Identifier character set.** Every identifier (`request_id`, `result_id`, `context_id`, `proposal_id`, `skill_id` parts excepted, `correlation_id`) uses 1 to 128 characters from `A-Z a-z 0-9 . _ : -`, the character set Motion uses, so a consumer can derive a Motion identifier without encoding.
+- **Whole-result digests.** The contract defines digests inside the execution record only. It defines no digest of a whole result. A consumer that computes one (for example Skill's `mind_result_digest`) holds a local value; if two parties must compare such digests they must compute them over the RFC 8785 canonical JSON form of the result, which this contract recommends but does not require.
+- **Retrieval.** How a consumer retrieves a context or snapshot from a reference (`context_ref`, `snapshot_ref`, `context_snapshot`) is not defined here; it depends on the transport and platform decisions that are not made.
+
+## 8. What is not verified
 
 No validator exists. The examples in [../examples/](../examples/README.md) were checked once, by hand, with a third-party validator that is not part of this repository. The rules above that JSON Schema cannot express are tested only when KOS-MIND-002 exists.

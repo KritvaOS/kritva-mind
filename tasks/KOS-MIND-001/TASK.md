@@ -14,6 +14,7 @@ Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC
 | 3a | align the plan with the program plan, fix stale notes, record the authentication boundary (proposed) | this change |
 | 3b | one schema PR for the Skill-requested changes (`proposal_id`, `skill_id` pattern and closed `version_constraint` grammar, `precondition_id`, `priority` direction, runtime-supplied schema rule, PARTIAL handling), with examples and a matching COMPATIBILITY.md; the Skill design note is merged in kritva-skill (PR 9) | this change (stacked on 3a) |
 | 3c | contract and criteria sync after the external review: digests and context snapshot required for replay, optional `placement`, FAILED needs an ERROR, new `contract/SEMANTICS.md` (cancellation, context lifecycle, version-constraint semantics, ordering), AC-003, AC-008 to AC-011 reworded, stale documents refreshed | this change |
+| 3d | contract changes answering the review findings (`sense_error_code`, `max_age_ns` minimum, identifier character set, SEMANTICS sections 6 and 7); the two review records must be refreshed against the merged result | this change |
 | 4 | criteria review, approvals, evidence on the exact closing commit, then the annotated tag `v0.1.0` after the approved merge | not started |
 
 Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed and agreed. The tag does not wait for Motion if Mind does not consume it. A Mind tag is not V2-M1 completion: V2-M1 closes only through its program completion record.

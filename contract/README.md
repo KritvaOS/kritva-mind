@@ -25,6 +25,8 @@ Task: KOS-MIND-001. These JSON Schemas (JSON Schema draft 2020-12) describe the 
 - **Priority.** A lower `priority` is preferred (0 first). Equal and absent priorities are ordered by ascending `proposal_id`, and a proposal with no priority comes after every proposal that has one. Priority orders candidates and grants no authority.
 - **Preconditions.** A Mind precondition is an informational claim; `expression` is never evaluated by Mind or Skill. A consumer-defined precondition that must be resolved is named by `precondition_id`.
 - **PARTIAL results.** Their proposals are advisory; `missing[]` says what Mind lacked, and a consumer must not execute them unless its own policy says so. Proposals of FAILED or CANCELLED results are not to be executed.
+- **Observations.** `observations[]` may carry the Sense `error_code` as `sense_error_code` (never for a VALID observation); the rules for `usable`, the Sense-to-Mind error mapping and the version check are in [SEMANTICS.md](SEMANTICS.md) section 6. `max_age_ns` may be 0.
+- **Identifiers.** All identifiers use 1 to 128 characters from `A-Z a-z 0-9 . _ : -`, matching Motion's. Whole-result digests and context retrieval are not defined ([SEMANTICS.md](SEMANTICS.md) section 7).
 - **Time and units.** Timestamps are RFC 3339 date-time; durations carry their unit in the name (`_ms`).
 - **Versioning.** `contract_version` is SemVer. A breaking change needs a new MAJOR version, a changelog entry and an approved decision. The `$id` values are URNs ending in the draft version; they are identifiers, not locations.
 

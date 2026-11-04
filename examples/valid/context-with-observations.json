@@ -35,7 +35,8 @@
       "validity": "STALE",
       "usable": false,
       "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "source_contract": "0.1.0"
+      "source_contract": "0.1.0",
+      "sense_error_code": "STALE_DATA"
     }
   ]
 }
