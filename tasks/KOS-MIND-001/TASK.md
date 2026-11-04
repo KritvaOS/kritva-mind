@@ -31,6 +31,22 @@ Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed
 8. `make check`, `make docs-check` and `make check-readme` results recorded; `make test-unit`, `make test-integration` and `make test-regression` reported as NOT_IMPLEMENTED, never as passes.
 9. Completion record drafted and approved by the owner; the annotated tag created only after the approved merge. A tag does not close V2-M1.
 
+## Closure status (record agreed by the owner in chat, 2026-11-04)
+
+State of the PR-4 checklist above. The record is [planning/reviews/KOS-MIND-001-CLOSURE.md](../../planning/reviews/KOS-MIND-001-CLOSURE.md). The owner's answers in chat on 2026-11-04 are recorded there, and the owner agreed the whole record in chat the same day; no separate approval record exists.
+
+| Item | State |
+|---|---|
+| 1 Skill side updated | Skill's note on `main` no longer lists the Mind fields as gaps and uses one set of `SKILL_*` codes; Skill's own approval state is outside this repository |
+| 2 Joint review recorded | Sense and Skill outcomes AGREED by the owner in chat; the two review records are updated from PENDING to AGREED in the same pull request as the closure record (text in section 7 of the closure record); D-6 closes on that record |
+| 3 D-1 | decided by the owner in chat, 2026-11-03 |
+| 4 Code owner and architecture reviewer records | not written; the owner holds both roles (D-047) |
+| 5 Criteria review | contract-level dispositions for AC-001 to AC-011 agreed by the owner in chat; none accepted; tests deferred to KOS-MIND-002, 003 and 006 |
+| 6 Ingress authentication | recorded as a known limitation, below |
+| 7 Closing commit, pull request, CI run IDs | not recorded; need a merge and CI |
+| 8 Gate results | `make test-unit`, `test-integration` and `test-regression` stay NOT_IMPLEMENTED |
+| 9 Completion record, tag | not drafted; the tag follows the approved merge and does not close V2-M1 |
+
 ## Known limitation and release-note text (draft)
 
 Known limitation — ingress authentication: Mind v0.1.0 does not authenticate request callers and does not carry caller identity or authentication assertions in its request schema. Authentication and authorization are the responsibility of the platform or transport boundary, consistent with owner decision C-5. That boundary, including trusted-principal propagation and enforcement, is not yet specified or verified by KOS-MIND-001. Deployments MUST NOT expose Mind ingress to untrusted callers until the platform boundary is defined, implemented and reviewed. Skill's independent authorization of execution does not replace authentication and authorization at Mind ingress.
