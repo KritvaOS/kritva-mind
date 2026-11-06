@@ -15,7 +15,7 @@ Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC
 | 3b | one schema PR for the Skill-requested changes (`proposal_id`, `skill_id` pattern and closed `version_constraint` grammar, `precondition_id`, `priority` direction, runtime-supplied schema rule, PARTIAL handling), with examples and a matching COMPATIBILITY.md; the Skill design note is merged in kritva-skill (PR 9) | this change (stacked on 3a) |
 | 3c | contract and criteria sync after the external review: digests and context snapshot required for replay, optional `placement`, FAILED needs an ERROR, new `contract/SEMANTICS.md` (cancellation, context lifecycle, version-constraint semantics, ordering), AC-003, AC-008 to AC-011 reworded, stale documents refreshed | this change |
 | 3d | contract changes answering the review findings (`sense_error_code`, `max_age_ns` minimum, identifier character set, SEMANTICS sections 6 and 7); the two review records must be refreshed against the merged result | this change |
-| 4 | criteria review, approvals, evidence on the exact closing commit, then the annotated tag `v0.1.0` after the approved merge | not started |
+| 4 | criteria review, approvals, evidence on the exact closing commit, then the annotated tag `v0.1.0` after the approved merge | this change: [COMPLETION_RECORD.md](../../COMPLETION_RECORD.md), the code-owner and architecture review records, four corrected statements in ARCHITECTURE.md; the tag follows the merge |
 
 Tag rule: no `v0.1.0` tag until the Mind and Skill interface is jointly reviewed and agreed. The tag does not wait for Motion if Mind does not consume it. A Mind tag is not V2-M1 completion: V2-M1 closes only through its program completion record.
 
@@ -40,12 +40,12 @@ State of the PR-4 checklist above. The record is [planning/reviews/KOS-MIND-001-
 | 1 Skill side updated | Skill's note on `main` no longer lists the Mind fields as gaps and uses one set of `SKILL_*` codes; Skill's own approval state is outside this repository |
 | 2 Joint review recorded | Sense and Skill outcomes AGREED by the owner in chat; the two review records are updated from PENDING to AGREED in the same pull request as the closure record (text in section 7 of the closure record); D-6 closes on that record |
 | 3 D-1 | decided by the owner in chat, 2026-11-03 |
-| 4 Code owner and architecture reviewer records | not written; the owner holds both roles (D-047) |
-| 5 Criteria review | contract-level dispositions for AC-001 to AC-011 agreed by the owner in chat; none accepted; tests deferred to KOS-MIND-002, 003 and 006 |
+| 4 Code owner and architecture reviewer records | written: [code-owner](../../planning/reviews/KOS-MIND-001-CODE-OWNER-REVIEW.md) and [architecture](../../planning/reviews/KOS-MIND-001-ARCHITECTURE-REVIEW.md) records, approved by the owner in chat on 2026-11-06 against `0722f3977ed53d793bfb3634c88933601d949e42`; the owner holds both roles (D-047), so not independent |
+| 5 Criteria review | contract-level dispositions agreed by the owner in chat on 2026-11-04; the owner's final dispositions on 2026-11-06 are in the completion record: PASS for AC-001, AC-002, AC-004 and AC-006, WAIVED with conditions for AC-003, AC-005, AC-007, AC-008, AC-009, AC-010 and AC-011 (a waiver is not a pass) |
 | 6 Ingress authentication | recorded as a known limitation, below |
-| 7 Closing commit, pull request, CI run IDs | not recorded; need a merge and CI |
+| 7 Closing commit, pull request, CI run IDs | merge commits, pull request heads and run IDs of pull requests 21 to 26 are in the completion record; the merge commit of the record's own pull request and its checks are recorded in the tag message |
 | 8 Gate results | `make test-unit` implemented by KOS-MIND-002 (pull request 25, `unit-tests` run 42215995601); `test-integration` and `test-regression` stay NOT_IMPLEMENTED |
-| 9 Completion record, tag | not drafted; the tag follows the approved merge and does not close V2-M1 |
+| 9 Completion record, tag | [COMPLETION_RECORD.md](../../COMPLETION_RECORD.md) in this change, approved by the owner in chat on 2026-11-06 (interim roles, D-047); the annotated tag `v0.1.0` follows its merge and the checks on the merge commit, and does not close V2-M1 in the program |
 
 ## Known limitation and release-note text (draft)
 
