@@ -37,8 +37,8 @@ endef
 
 lint: ## Static analysis and lint (NOT_IMPLEMENTED: exits 3)
 	$(call not_implemented,lint)
-test-unit: ## Unit tests (NOT_IMPLEMENTED: exits 3)
-	$(call not_implemented,test-unit)
+test-unit: ## Unit tests: contract validator, semantic rules, examples (KOS-MIND-002)
+	@PYTHONPATH=src python3 -m unittest discover -s tests/validator -v
 test-integration: ## Integration tests (NOT_IMPLEMENTED: exits 3)
 	$(call not_implemented,test-integration)
 test-regression: ## Regression tests (NOT_IMPLEMENTED: exits 3)
