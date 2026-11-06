@@ -97,16 +97,16 @@ The intended direction is hybrid: Edge, Nexus and Cloud. Not every subsystem run
 |---|---|---|---|
 | D-1 | Contract encoding | DECIDED by the owner in chat, 2026-11-03 (no separate approval record): JSON Schema draft 2020-12, as in the merged schemas; transport is decided separately. A change of encoding is a contract change | none |
 | D-2 | Validator implementation | DECIDED (owner instruction "Decide D2" in chat, 2026-11-03; no separate approval record): a limited, dependency-free validator in the Python 3 standard library, for KOS-MIND-002. It supports only the keywords the contract schemas use and refuses any other keyword, so it cannot silently ignore one. Reasons: the repository and its CI are standard-library only, kritva-sense does the same, the schemas use a small keyword set, and error ordering stays under our control (AC-004). Safeguards in section 8.1 | none |
-| D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope | KOS-MIND-001 review |
-| D-4 | Memory backend | pluggable interface requirements only; backend deferred | later task |
+| D-3 | Context persistence | identity and lifecycle in the contract; backend out of scope. Deferred by design for `v0.1.0` | none for `v0.1.0`; a backend needs a later decision |
+| D-4 | Memory backend | pluggable interface requirements only; backend deferred. Deferred by design for `v0.1.0` | later task |
 | D-5 | Core and Sense contract versions | pin when approved; never invent or pin an unapproved version | Sense: pinned to contract 0.1.0 (tag `v0.2.0`) by the owner on 2026-11-02; Core: no Core contract is consumed (confirmed by the owner in chat, 2026-11-03; see [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md)) |
-| D-6 | Mind to Skill interaction contract | design jointly with kritva-skill before accepting the interface part of KOS-MIND-001 | kritva-skill review |
+| D-6 | Mind to Skill interaction contract | CLOSED by the joint review outcome AGREED by the owner in chat, 2026-11-04 (see [planning/reviews/KOS-MIND-001-CLOSURE.md](planning/reviews/KOS-MIND-001-CLOSURE.md); no separate approval record). The Skill design note is still proposed, not approved, and SK-12 to SK-14 are open outside this repository | none here; Skill-side decisions in kritva-skill |
 | D-8 | Authentication of Mind callers | DECIDED by the owner in chat, 2026-11-03 (C-5): outside the Mind request schema; the platform boundary authenticates and Skill independently authorizes; no separate approval record | none |
 | D-7 | Program authority record | resolved: kritva-program (owner statement in chat, 2026-11-02) | none |
 
 ### 8.1 Validator safeguards (D-2)
 
-- A keyword allowlist: a schema that uses a keyword the validator does not implement is rejected, never skipped. At the time of the decision the contract schemas use `$ref`, `$defs`, `type`, `enum`, `const`, `properties`, `required`, `additionalProperties`, `items`, `minItems`, `uniqueItems`, `minimum`, `minLength`, `maxLength`, `pattern`, `propertyNames`, `dependentRequired`, `allOf`, `anyOf`, `not`, `if`/`then` and `format` (`date-time` only).
+- A keyword allowlist: a schema that uses a keyword the validator does not implement is rejected, never skipped. At the time of the decision the contract schemas use `$ref`, `$defs`, `type`, `enum`, `const`, `properties`, `required`, `additionalProperties`, `items`, `minItems`, `uniqueItems`, `minimum`, `minLength`, `maxLength`, `pattern`, `propertyNames`, `dependentRequired`, `allOf`, `anyOf`, `not`, `if`/`then` and `format` (`date-time` only). KOS-MIND-002 added `contains` (the FAILED-needs-an-ERROR rule uses it) and a test pins the allowlist as this list plus `contains`.
 - Local resolution of the `urn:` schema identifiers; no network access.
 - `format` is asserted for `date-time` (RFC 3339), which a default `jsonschema` run does not do.
 - Reports every violation, sorted by path then code, so the same input gives the same outcome (AC-004).
@@ -124,11 +124,11 @@ The owner stated in chat (2026-11-02) that kritva-program is the program authori
 
 ## 11. Contract summary
 
-The schemas in [contract/](contract/README.md) are the current draft of the contract; this section no longer repeats their fields, so there is one source. Rules that JSON Schema cannot express (cancellation, context lifecycle transitions, version-constraint semantics, proposal ordering and uniqueness, replay evidence) are in [contract/SEMANTICS.md](contract/SEMANTICS.md). All of it is proposed, not accepted, and no validator exists yet.
+The schemas in [contract/](contract/README.md) are the current draft of the contract; this section no longer repeats their fields, so there is one source. Rules that JSON Schema cannot express (cancellation, context lifecycle transitions, version-constraint semantics, proposal ordering and uniqueness, replay evidence) are in [contract/SEMANTICS.md](contract/SEMANTICS.md). All of it is proposed, not accepted. A limited validator and unit tests exist (KOS-MIND-002; see section 8.1); they show that the validator and the examples agree, not that the contract is correct.
 
 ## 12. Joint reviews
 
-The questions below were put to the neighbouring repositories. Skill's answers are in its proposed design note (kritva-skill `docs/design/MIND_SKILL_INTERFACE.md`) and are mapped in [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md); the joint review is not complete.
+The questions below were put to the neighbouring repositories. Skill's answers are in its proposed design note (kritva-skill `docs/design/MIND_SKILL_INTERFACE.md`) and are mapped in [contract/COMPATIBILITY.md](contract/COMPATIBILITY.md); the joint review outcome was AGREED by the owner in chat on 2026-11-04 and is recorded in [planning/reviews/KOS-MIND-001-CLOSURE.md](planning/reviews/KOS-MIND-001-CLOSURE.md). Skill's note is still proposed and the Skill-side decisions SK-12 to SK-14 are open outside this repository.
 
 **kritva-sense:** which Sense contract version and schema Mind consumes, and how compatibility is managed; which fields carry observations, timestamps, source identity and uncertainty; how stale, missing, partial, invalid and unavailable observations are represented; whether Mind can keep a reference and digest of the original input; ownership and lifecycle of data passed into context.
 
