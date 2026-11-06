@@ -108,12 +108,12 @@ Proposed milestones, from [planning/MILESTONE.md](planning/MILESTONE.md) (genera
 | ID | Program milestone | Status recorded here | Outcome (proposed) |
 |---|---|---|---|
 | V2-M0-MIND-001 | V2-M0 FOUNDATION | PROPOSED in the program plan; baseline merged, no completion record | Repository governance baseline merged: acceptance criteria, CI checks, CODEOWNERS, AGENTS.md. |
-| V2-M1-MIND-001 | V2-M1 STUDIO | PROPOSED | Mind request, context and result contract (task 001) reviewed and tagged v0.1.0. |
+| V2-M1-MIND-001 | V2-M1 STUDIO | PROPOSED in the program plan; completion record added, tag pending | Mind request, context and result contract (task 001) reviewed and tagged v0.1.0. |
 | V2-M2-MIND-001 | V2-M2 BUILD & ARTIFACT | PROPOSED | Schema validation, cancellation and error-path tests pass; gates implemented. |
 | V2-M5-MIND-001 | V2-M5 EXECUTION | PROPOSED | Mind results reproducible in simulated execution. |
 | V2-M8-MIND-001 | V2-M8 PRODUCTION | PROPOSED | Release and security review complete. |
 
-The target dates are in [planning/MILESTONE.md](planning/MILESTONE.md); they are proposed targets, not approved dates and not delivery commitments (program decision PD-001). The status table is "as of the governance baseline commit" and may lag the repository (it shows the governance baseline as IN_REVIEW although the baseline change has since been merged). A milestone closes only through an approved `COMPLETION_RECORD.md`; a tag or a merge does not close it, and no completion record exists.
+The target dates are in [planning/MILESTONE.md](planning/MILESTONE.md); they are proposed targets, not approved dates and not delivery commitments (program decision PD-001). The status table is "as of the governance baseline commit" and may lag the repository (it shows the governance baseline as IN_REVIEW although the baseline change has since been merged). A milestone closes only through an approved completion record; a tag or a merge does not close it. The only completion record is [COMPLETION_RECORD.md](COMPLETION_RECORD.md) for V2-M1-MIND-001, approved by the owner in chat on 2026-11-06 under the interim roles of program decision D-047 (not independent review). The program has no Mind status source, so its own state for the milestone is unchanged.
 
 ## 9. Tasks and Acceptance Criteria
 
@@ -130,7 +130,7 @@ Not yet implemented. This repository has no `status/` directory and generates no
 | Execution | the task status in [planning/TASKS.md](planning/TASKS.md); KOS-MIND-001 is IN_PROGRESS | The task owner records it |
 | Evidence | none recorded: no CI run, test result or review record is cited as task evidence | Evidence is recorded at acceptance, by the author, and checked by another reviewer |
 | Acceptance | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md), the review record and the central approvals in kritva-program | The independent reviewer and the owner, never a status report |
-| Release readiness | not defined: no release, tag or completion record exists | The owner, through the central gates |
+| Release readiness | no release exists; the completion record for V2-M1-MIND-001 is [COMPLETION_RECORD.md](COMPLETION_RECORD.md) and the first preview tag `v0.1.0` follows its merge | The owner, through the central gates |
 
 ## 11. Build, Test, Regression and Validation
 
@@ -170,7 +170,7 @@ No implementation and no safety case exist at this planning stage: the repositor
 
 ## 14. Release and Versioning
 
-No release exists and no version is defined. The plan is annotated SemVer tags (`vMAJOR.MINOR.PATCH`) created only after the approved merge, with contracts versioned independently of program phases and a MAJOR version for a breaking contract change ([AGENTS.md](AGENTS.md) sections 2 and 6). A milestone closes only through an approved completion record. This README records no release state.
+No release exists at the time of writing. The first preview tag `v0.1.0` is planned for after [COMPLETION_RECORD.md](COMPLETION_RECORD.md) is merged and its checks pass; git tags are the record of release state. The plan is annotated SemVer tags (`vMAJOR.MINOR.PATCH`) created only after the approved merge, with contracts versioned independently of program phases and a MAJOR version for a breaking contract change ([AGENTS.md](AGENTS.md) sections 2 and 6). A milestone closes only through an approved completion record. This README does not track release state.
 
 ## 15. Ownership and Escalation
 

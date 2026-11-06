@@ -9,7 +9,7 @@ Task IDs use the prefix `KOS-MIND` (proposed registry, program decision PD-004).
 
 Task KOS-MIND-001 includes the architecture ([ARCHITECTURE.md](../ARCHITECTURE.md), proposed) as its first deliverable.
 
-The closure record for KOS-MIND-001, agreed by the owner in chat on 2026-11-04 (not a completion record), is [reviews/KOS-MIND-001-CLOSURE.md](reviews/KOS-MIND-001-CLOSURE.md); the proposed scope, dependencies, boundaries and evidence of all eight tasks are in [TASK_CATALOGUE.md](TASK_CATALOGUE.md). The catalogue is proposed; neither registers a task or changes a baseline.
+The closure record for KOS-MIND-001, agreed by the owner in chat on 2026-11-04 (not a completion record), is [reviews/KOS-MIND-001-CLOSURE.md](reviews/KOS-MIND-001-CLOSURE.md); the proposed scope, dependencies, boundaries and evidence of all eight tasks are in [TASK_CATALOGUE.md](TASK_CATALOGUE.md). The catalogue is proposed; neither registers a task or changes a baseline. The completion record for milestone V2-M1-MIND-001, approved by the owner in chat on 2026-11-06 under the interim roles of D-047, is [../COMPLETION_RECORD.md](../COMPLETION_RECORD.md). It does not change a task status, a baseline or program credit.
 
 ## Proposed later tasks (not registered)
 
