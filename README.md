@@ -29,7 +29,7 @@ Kritva Mind is the part of Kritva OS V2 that will own the Mind request, context 
 
 **This repository does not own**: sensing (kritva-sense), motion (kritva-motion), skill orchestration (kritva-skill), and the platform foundation (kritva-core).
 
-**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. PROPOSED, in progress: the contract schemas under [contract/](contract/README.md) (0.1.0-draft, not accepted, no validator) and the architecture ([ARCHITECTURE.md](ARCHITECTURE.md)), for task KOS-MIND-001, which is IN_PROGRESS on the owner's instruction in [planning/TASKS.md](planning/TASKS.md). NOT YET IMPLEMENTED: any source code, tests of the contract, a `src/` folder, unit, integration and regression gates, status reporting and any release. Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
+**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. PROPOSED, in progress: the contract schemas under [contract/](contract/README.md) (0.1.0-draft, not accepted) and the architecture ([ARCHITECTURE.md](ARCHITECTURE.md)), for task KOS-MIND-001, which is IN_PROGRESS on the owner's instruction in [planning/TASKS.md](planning/TASKS.md). IN PROGRESS, not accepted: a standard-library contract validator with unit tests (`src/kritva_mind/`, `tests/validator/`), for task KOS-MIND-002, started on the owner's instruction before KOS-MIND-001 is accepted; it validates the draft contract and earns no credit. NOT YET IMPLEMENTED: integration and regression gates, a reasoning provider, a memory backend, status reporting and any release. Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
 
 ## 2. Position in the KritvaOS Ecosystem
 
@@ -66,12 +66,14 @@ Labels: INPUT is edited by hand and read by a tool or review; GENERATED is writt
 | [planning/](planning/) | Tasks, milestones, milestone status, review checklist, commit step, changelog | MIXED: planning records | Governs execution and acceptance |
 | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) | Criteria and test gates for KOS-MIND-001 | AUTHORITATIVE; PROPOSED | Accepted criteria are never edited; a change is a new version |
 | [scripts/](scripts/) | `docs_check.py` (link check), `pipeline/pr_gate.py` (PR gate), `security/` (commit checkers), `check_readme.py` (README check) | INPUT; IMPLEMENTED | `pipeline/` and `security/` are protected paths of the gate |
-| [tests/](tests/) | `commit_message_check/` (commit checker tests) and `readme_check/` (README checker tests) | EVIDENCE; IMPLEMENTED | Tests of the checkers only; no test of the contract exists |
-| [.github/](.github/) | CODEOWNERS, pull request template, `kritva-gate.json` and four workflows | AUTHORITATIVE | `kritva-gate.json` configures the PR gate |
+| [tests/](tests/) | `commit_message_check/` (commit checker tests), `readme_check/` (README checker tests) and `validator/` (validator unit tests) | EVIDENCE; IMPLEMENTED | `validator/` tests the draft contract validator (KOS-MIND-002); the other two test the checkers |
+| [.github/](.github/) | CODEOWNERS, pull request template, `kritva-gate.json` and five workflows | AUTHORITATIVE | `kritva-gate.json` configures the PR gate |
 | [Makefile](Makefile) | Check targets; unimplemented gates exit 3 | INPUT; IMPLEMENTED | See section 11 |
 | [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [LICENSE](LICENSE) | Rules, contribution steps, security policy, licence | AUTHORITATIVE | |
-| [contract/](contract/) | Proposed JSON Schemas for the request, context and result (0.1.0-draft) | INPUT; PROPOSED | Not accepted; no validator, so no test gate covers them |
-| `src/`, `include/`, `docs/`, `status/`, `examples/` | Source, interfaces, documentation, status report, examples | NOT YET IMPLEMENTED (absent) | Added only when a real task needs them |
+| [contract/](contract/) | Proposed JSON Schemas for the request, context and result (0.1.0-draft) | INPUT; PROPOSED | Not accepted; `make test-unit` checks them only through the draft validator and the examples |
+| [src/kritva_mind/](src/kritva_mind/) | Contract validator: limited JSON Schema 2020-12 validator, semantic rules, command line | INPUT; IN PROGRESS (KOS-MIND-002) | Standard library only; `python3 -m kritva_mind validate <request\|context\|result> FILE` with `PYTHONPATH=src` |
+| [examples/](examples/README.md) | Synthetic valid and invalid documents and `manifest.json` | EVIDENCE; PROPOSED | Checked by `make test-unit`; not evidence that the contract is correct |
+| `include/`, `docs/`, `status/` | Interfaces, documentation, status report | NOT YET IMPLEMENTED (absent) | Added only when a real task needs them |
 
 ## 6. Toolchain and Development Workflow
 
@@ -132,7 +134,7 @@ Not yet implemented. This repository has no `status/` directory and generates no
 
 ## 11. Build, Test, Regression and Validation
 
-CI runs four workflows. `make check` is a local command and is not the same as CI.
+CI runs five workflows. `make check` is a local command and is not the same as CI.
 
 | Workflow | Trigger | What it runs |
 |---|---|---|
@@ -140,16 +142,18 @@ CI runs four workflows. `make check` is a local command and is not the same as C
 | `pr-acceptance-gate` | pull requests | `scripts/pipeline/pr_gate.py static` against `.github/kritva-gate.json`: report-only rules R01 commit format, R02 task exists and is open, R03 acceptance criteria changed, R04 protected paths, R05 completion record, R06 required workflows, R07 required approvals, R08 dependencies. REJECT fails the check; NEEDS_HUMAN and APPROVE pass it; it posts or updates a report comment and approves and merges nothing |
 | `readme-check` | pull requests; push to `main` | the README checker's unit tests, then `python3 scripts/check_readme.py README.md` (structure, metadata and local links only; not a required check yet, D-067) |
 | `secret-scan` | push to `main`; pull requests; manual dispatch | gitleaks over the git history |
+| `unit-tests` | pull requests; push to `main` | `make test-unit` on Python 3.12; not a required check (adding it to `required_github_checks` needs an owner-approved kritva-program pipeline update) |
 
 | Command | Effect | Notes |
 |---|---|---|
 | `make check` | check | required planning files exist; the commit-message checker's unit tests run; it does not run `docs-check`, the PR gate or any contract test |
 | `make docs-check` | check | every relative Markdown link points to an existing file (not an anchor check) |
 | `make check-readme` | check | structural check of this README only (metadata, topics, relative links, placeholders); a PASS does not show the content is accurate; not part of `make check` or CI |
-| `make lint`, `make test-unit`, `make test-integration`, `make test-regression`, `make test`, `make acceptance` | placeholder | print NOT_IMPLEMENTED and exit 3: they check nothing and are never a pass |
+| `make test-unit` | check | runs the validator unit tests (`tests/validator/`, standard library only); a PASS shows the draft validator and examples agree, not that the contract is right or safe; not a required check |
+| `make lint`, `make test-integration`, `make test-regression`, `make test`, `make acceptance` | placeholder | print NOT_IMPLEMENTED and exit 3: they check nothing and are never a pass |
 | `python3 scripts/security/check_commit_format.py --range origin/main..HEAD` | check | the commit format of the commits on a branch (the PR gate runs the same check as rule R01) |
 
-There is nothing to build and no test of the contract: the schemas under `contract/` are proposed and no validator exists yet. A passing `make check` shows only that the listed files exist and that the commit checker's own tests pass. It does not show that a design is right, that a gate is closed or that anything is safe. `.github/kritva-gate.json` declares three required checks (`secret-scan`, `commit-message-check` and `pr-acceptance-gate`); that list is the gate's own declaration, not the branch ruleset. [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md) now name the same three. The owner decided that `pr-acceptance-gate` is a required check in the `main` ruleset (PD-018, D-061); the owner states that it has been added to the `main` ruleset (D-069); that is OWNER-ATTESTED and not independently verified from this README.
+There is nothing to build. The schemas under `contract/` are proposed, and the only test of them is the draft validator run by `make test-unit` (KOS-MIND-002, in progress). A passing `make check` shows only that the listed files exist and that the commit checker's own tests pass. It does not show that a design is right, that a gate is closed or that anything is safe. `.github/kritva-gate.json` declares three required checks (`secret-scan`, `commit-message-check` and `pr-acceptance-gate`); that list is the gate's own declaration, not the branch ruleset. [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md) now name the same three. The owner decided that `pr-acceptance-gate` is a required check in the `main` ruleset (PD-018, D-061); the owner states that it has been added to the `main` ruleset (D-069); that is OWNER-ATTESTED and not independently verified from this README.
 
 ## 12. Git Workflow and Review
 

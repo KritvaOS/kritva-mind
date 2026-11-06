@@ -5,6 +5,7 @@ Task IDs use the prefix `KOS-MIND` (proposed registry, program decision PD-004).
 | Task | Title | Status | Milestone | Acceptance |
 |---|---|---|---|---|
 | KOS-MIND-001 | Mind request, context and result contract | IN_PROGRESS (owner approved the start in chat, 2026-11-02; see [tasks/KOS-MIND-001/TASK.md](../tasks/KOS-MIND-001/TASK.md)) | V2-M1-MIND-001 | [ACCEPTANCE_CRITERIA.md](../ACCEPTANCE_CRITERIA.md) section 3 |
+| KOS-MIND-002 | Mind contract validator | IN_PROGRESS (owner instructed the start in chat, 2026-11-03; on 2026-11-06 the owner decided in chat to land it before the KOS-MIND-001 completion record and the `v0.1.0` tag; see [tasks/KOS-MIND-002/TASK.md](../tasks/KOS-MIND-002/TASK.md)) | V2-M2-MIND-001 | proposed criteria in [tasks/KOS-MIND-002/TASK.md](../tasks/KOS-MIND-002/TASK.md); none accepted |
 
 Task KOS-MIND-001 includes the architecture ([ARCHITECTURE.md](../ARCHITECTURE.md), proposed) as its first deliverable.
 
@@ -12,11 +13,10 @@ The closure record for KOS-MIND-001, agreed by the owner in chat on 2026-11-04 (
 
 ## Proposed later tasks (not registered)
 
-These are candidates only. Each becomes a row above when its prerequisites and acceptance criteria are concrete and the owner approves it. None has a status, an owner or a date.
+KOS-MIND-002 left this list when it started (see the table above). The rest are candidates only. Each becomes a row above when its prerequisites and acceptance criteria are concrete and the owner approves it. None has a status, an owner or a date.
 
 | Candidate | Scope | Depends on | Target milestone |
 |---|---|---|---|
-| KOS-MIND-002 | Standard-library validator under the D-2 safeguards ([ARCHITECTURE.md](../ARCHITECTURE.md) section 8.1): keyword allowlist that fails closed, local `$ref` resolution, asserted `date-time`, deterministic error order, example-manifest tests, semantic checks the schemas cannot express (unique `proposal_id`, proposal ordering, `VersionConstraint` ranges with lower bound below upper bound, caret semantics, cancellation and context-lifecycle rules in [contract/SEMANTICS.md](../contract/SEMANTICS.md)); schema validation, cancellation and error-path tests; implement `make test-unit` and a `unit-tests` workflow (adding it to the required checks needs an owner-approved kritva-program pipeline update) | KOS-MIND-001 accepted | V2-M2-MIND-001 |
 | KOS-MIND-003 | Context lifecycle checks and edge/hybrid conformance tests (AC-009, AC-010); implements no reasoning provider | KOS-MIND-001 accepted | V2-M2-MIND-001 |
 | KOS-MIND-004 | Integration tests at the real Sense boundary; implement `make test-integration` and `make test-regression`. Core integration only if Mind consumes a defined, approved Core interface | KOS-MIND-002; approved Sense contract | V2-M2-MIND-001 |
 | KOS-MIND-005 | Reasoning adapter and memory interface conformance (providers and backends live outside this repository unless decided otherwise) | KOS-MIND-001 accepted; decision D-4 | V2-M5-MIND-001 |
