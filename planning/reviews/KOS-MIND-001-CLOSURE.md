@@ -93,3 +93,33 @@ Gates at closure: `make test-unit`, `make test-integration` and `make test-regre
 Sense review outcome: `AGREED` by the owner in chat on 2026-11-04; no separate approval record; SE-1 to SE-12 positions as in the KOS-MIND-001 closure record.
 
 Skill review outcome: `AGREED` by the owner in chat on 2026-11-04; no separate approval record; SK-1 to SK-15 positions as in the KOS-MIND-001 closure record; decision D-6 closes on this record.
+
+## 8. Update after KOS-MIND-002 (2026-11-06)
+
+Added after the owner agreed sections 1 to 7 on 2026-11-04. It changes none of them: every disposition in section 4 stays as agreed, and nothing here accepts a criterion. On 2026-11-06 the owner decided in chat to hold the completion record and the `v0.1.0` tag until the validator task landed.
+
+| Item | Read |
+|---|---|
+| Validator task | KOS-MIND-002 merged in pull request 25, merge commit `b59f767268b77075a0ea693f9346d34d9fef83c5`: standard-library validator, 114 unit tests, `make test-unit` implemented, `unit-tests` workflow (not a required check) |
+| CI runs on that commit | `unit-tests` 42215995601, `secret-scan` 42215995580, `readme-check` 42215995450 (all success, push to `main`); `unit-tests` 42215933475 on the pull request head `4d9364c9b588` |
+| Contract | unchanged by pull request 25; the contract text equals the text at `d821319caea42a22633d7219dc3c237be712fb3a` (pull request 24 merged) |
+| Review records | both refreshed on 2026-11-06 against `b59f767268b77075a0ea693f9346d34d9fef83c5`; Skill side not re-fetched (see the Skill record) |
+| Superseded statements | the section 4 line that every test item stays NOT_IMPLEMENTED and limitation 2 in section 5 (no executable validator) no longer hold for the unit gate. `make test-unit` is implemented. `make test-integration` and `make test-regression` remain NOT_IMPLEMENTED and are not passes. The release-note text in [tasks/KOS-MIND-001/TASK.md](../../tasks/KOS-MIND-001/TASK.md) is updated to match |
+
+Evidence now in `main` for each criterion, and what is still outstanding. These are facts, not dispositions; the owner's per-criterion dispositions for the completion record are not made here.
+
+| AC | Unit-test evidence now in `main` | Still outstanding |
+|---|---|---|
+| AC-001 | `test_examples.py` (every example in `examples/manifest.json` fails or passes as stated), `test_contract_keywords.py` | nothing test-related |
+| AC-002 | `ErrorMapping` and the FAILED-needs-ERROR examples in `test_examples.py` | nothing test-related |
+| AC-003 | `Cancellation` in `test_semantics.py` | the wire format of `cancel` is not defined |
+| AC-004 | `test_determinism.py` | nothing test-related |
+| AC-005 | `ObservationUsable.test_pinned_sense_contract_version`; the version pin is enforced only when a version is passed to the validator, not by the schemas | integration at the Sense boundary (KOS-MIND-004) |
+| AC-006 | none (architecture review) | the owner's architecture review record; `ARCHITECTURE.md` section 8.1 keyword list lacks `contains` |
+| AC-007 | `test_a_result_with_a_decision_field_stays_rejected` and the authorize-field example | cross-repository tests (KOS-MIND-007); the Skill review has no reviewer but the owner |
+| AC-008 | `ContextLifecycle` in `test_semantics.py` | lifecycle tests assigned to KOS-MIND-003 |
+| AC-009 | none | KOS-MIND-003 (NOT_IMPLEMENTED) |
+| AC-010 | none | KOS-MIND-003 (NOT_IMPLEMENTED) |
+| AC-011 | digest and context-snapshot examples in `test_examples.py` | replay comparison (KOS-MIND-006) |
+
+Still needed before the completion record: the owner's per-criterion dispositions (the program standard allows only PASS, WAIVED with an approval reference, or NOT_APPLICABLE with an approval reference); the code-owner and architecture-reviewer records on the current head; a status source and baseline entry in kritva-program (separate repository, owner decision); the Skill side re-fetched.
