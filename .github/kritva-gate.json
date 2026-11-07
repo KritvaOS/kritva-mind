@@ -29,7 +29,8 @@
   "required_github_checks": [
     "secret-scan",
     "commit-message-check",
-    "pr-acceptance-gate"
+    "pr-acceptance-gate",
+    "readme-check"
   ],
   "task_prefix": "KOS-MIND",
   "task_registry": {
