@@ -4,7 +4,7 @@ As of 2026-11-06, after pull request 26 (`main` at `0722f3977ed53d793bfb3634c889
 
 | Milestone | Status | What exists | Not done |
 |---|---|---|---|
-| V2-M0-MIND-001 | PROPOSED in the program plan | the governance baseline is merged (pull requests 1 to 8) | no completion record, so it is not closed |
+| V2-M0-MIND-001 | PROPOSED in the program plan | the governance baseline is merged (pull requests 1 to 8) | no completion record, so it is not closed; evidence package [REV-006-GOVERNANCE-BASELINE.md](reviews/REV-006-GOVERNANCE-BASELINE.md) prepared, owner decision pending |
 | V2-M1-MIND-001 | PROPOSED in the program plan; completion record added, tag pending | architecture, draft schemas, semantics, examples, Sense pin, validator decision and plan alignment merged (pull requests 9 to 18); Sense and Skill review outcomes agreed by the owner and recorded with a closure record (pull requests 22 to 24); contract changes answering the review findings (pull request 23); review records refreshed against pull request 25; completion record, code-owner and architecture review records and the owner's dispositions (PASS for AC-001, AC-002, AC-004 and AC-006; WAIVED with conditions for the other seven) in [COMPLETION_RECORD.md](../COMPLETION_RECORD.md) | the annotated tag `v0.1.0` (after the merge and its checks); a Mind status source, baseline entry and registration in kritva-program; the waived items (see the record); independent review |
 | V2-M2-MIND-001 | PROPOSED | KOS-MIND-002 merged (pull request 25): validator, 114 unit tests, `make test-unit`, `unit-tests` workflow (not a required check) | `make test-integration` and `make test-regression` are NOT_IMPLEMENTED; no completion record |
 | V2-M5-MIND-001 | PROPOSED | none | replay and simulation evidence |
