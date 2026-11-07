@@ -14,20 +14,15 @@ Title: Mind governance baseline accepted. Weight: 3. Registered as a `KOS-MIND` 
 | Criterion | Statement | Evidence in the working tree | Result |
 |---|---|---|---|
 | AC-M0-1 | Governance files exist: `AGENTS.md`, `ACCEPTANCE_CRITERIA.md`, `SECURITY.md`, `.github/CODEOWNERS`, `.github/kritva-gate.json` | All present; CODEOWNERS content verified against GitHub on 2026-11-07 | PRESENT |
-| AC-M0-2 | Required checks are defined and named the same in workflows, `.github/kritva-gate.json` and the ruleset: `secret-scan`, `commit-message-check`, `pr-acceptance-gate`, `readme-check` | Workflow job names match. The ruleset requires `readme-check`; the gate file is aligned by PR #29 (merge it first). `unit-tests` runs but is not a required check | MATCH after PR #29 |
+| AC-M0-2 | Required checks are defined and named the same in workflows, `.github/kritva-gate.json` and the ruleset: `secret-scan`, `commit-message-check`, `pr-acceptance-gate`, `readme-check` | Workflow job names match. The ruleset requires `readme-check`; the gate file was aligned by PR #29. `unit-tests` runs but is not a required check | MATCH (PR #29 merged) |
 | AC-M0-3 | The branch ruleset on `main` requires a pull request and the required checks. The approval roles `REPO_CODE_OWNER` and `ARCHITECTURE_REVIEWER` are held by the owner on an interim basis (D-047) and are not enforced by the ruleset (D-115) | Checked 2026-11-07 through the GitHub rulesets API: ruleset `protect-main` is active on the default branch, blocks deletion and force-push, requires a pull request with 0 approving reviews and no code-owner review, and requires pr-acceptance-gate, commit-message-check, readme-check, secret-scan. Bypass actors are not visible without admin access | PARTIAL: pull request and checks verified; approvals not enforced |
 | AC-M0-4 | Commit policy is enforced by an automated check | `commit-message-check` workflow | PRESENT |
-| AC-M0-5 | The program has a status source for Mind | None: Mind has no `status/` directory and is not registered on a program workstream (PD-014) | NOT MET until PD-014 is decided |
+| AC-M0-5 | The program has a status source for Mind | `status/status.json` (schema 2.0) registers the workstream (PD-014, D-116) and reports KOS-MIND-M0-001 (baseline v11, D-117) | MET |
 | AC-M0-6 | Planning records are consistent and no unimplemented gate is reported as passing | `planning/MILESTONE_STATUS.md` lists `make test-integration` and `make test-regression` as NOT_IMPLEMENTED | CONSISTENT |
 
-## 2. Open item: Mind status source (PD-014)
+## 2. Status source (PD-014, decided)
 
-The program cannot read Mind state because no status file exists. Two options for the owner:
-
-1. Add a `status/status.json` in this repository in the same schema as kritva-sense (schema 2.0), with KOS-MIND-001 and KOS-MIND-002 as they stand in `planning/TASKS.md`, and register Mind in the program (PD-014).
-2. Register Mind in the program from `planning/TASKS.md` only, with no status file.
-
-Until PD-014 is decided, AC-M0-5 stays open and this repository adds no status file.
+PD-014 was decided in D-116: Mind is registered on workstream MIND and publishes `status/status.json` in the program's schema 2.0. Baseline v11 (D-117) adds KOS-MIND-M0-001, which the status report now lists; KOS-MIND-001 and KOS-MIND-002 are still not baselined and are not reported.
 
 ## 3. CI evidence
 
