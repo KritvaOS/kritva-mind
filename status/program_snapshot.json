@@ -56,7 +56,99 @@
   },
   "repo": "Mind",
   "repository": "KritvaOS/kritva-mind",
-  "schema_version": 1,
+  "schema_version": 2,
+  "tasks": [
+    {
+      "accepted": true,
+      "execution": "COMPLETE",
+      "id": "KOS-MIND-M0-001",
+      "kind": "baselined",
+      "milestone": "M0",
+      "title": "Mind governance and acceptance review",
+      "weight": 3
+    },
+    {
+      "accepted": false,
+      "execution": "IN_PROGRESS",
+      "id": "KOS-MIND-001",
+      "kind": "planned",
+      "milestone": "M1",
+      "title": "Mind foundational contract and schema work",
+      "weight": 5
+    },
+    {
+      "accepted": false,
+      "execution": "IN_PROGRESS",
+      "id": "KOS-MIND-002",
+      "kind": "planned",
+      "milestone": "M2",
+      "title": "Mind validation and semantics implementation",
+      "weight": 5
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "KOS-MIND-004",
+      "kind": "planned",
+      "milestone": "M2",
+      "title": "Mind capability and contract integration",
+      "weight": 6
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "KOS-MIND-005",
+      "kind": "planned",
+      "milestone": "M5",
+      "title": "Mind execution and runtime integration",
+      "weight": 6
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "KOS-MIND-006",
+      "kind": "planned",
+      "milestone": "M5",
+      "title": "Mind execution conformance and validation",
+      "weight": 6
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "KOS-MIND-007",
+      "kind": "planned",
+      "milestone": "M5",
+      "title": "Joint Mind-to-Skill integration",
+      "weight": 6
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "KOS-MIND-008",
+      "kind": "planned",
+      "milestone": "M8",
+      "title": "Mind production readiness and release review",
+      "weight": 6
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "PROPOSED-NEW-MIND-003-01",
+      "kind": "planned",
+      "milestone": "M2",
+      "title": "Context lifecycle model",
+      "weight": 5
+    },
+    {
+      "accepted": false,
+      "execution": "NOT_STARTED",
+      "id": "PROPOSED-NEW-MIND-003-02",
+      "kind": "planned",
+      "milestone": "M2",
+      "title": "Edge and Hybrid context conformance fixtures",
+      "weight": 5
+    }
+  ],
   "titles": {
     "M0": "Foundation",
     "M1": "Studio",

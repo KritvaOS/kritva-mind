@@ -28,6 +28,30 @@ Accepted weight over total weight, where total covers completed Foundation work,
 
 Milestone dates are owner-approved planning dates in the program, not delivery commitments.
 
+## Baselined tasks
+
+Tasks in the approved program baseline. Weight is the baseline weight. Acceptance is decided by kritva-program; execution is this repository's own report.
+
+| Task | Title | Milestone | Weight | Execution | Acceptance |
+|---|---|---|---|---|---|
+| `KOS-MIND-M0-001` | Mind governance and acceptance review | M0 | 3 | COMPLETE | ACCEPTED |
+
+## Planned tasks (not baselined)
+
+Owner-approved V2 planning scope that is not in the baseline yet. Weights are estimates (point value). These earn no credit until they are baselined and accepted.
+
+| Task | Title | Milestone | Estimated weight | Execution | Acceptance |
+|---|---|---|---|---|---|
+| `KOS-MIND-001` | Mind foundational contract and schema work | M1 | 5 | IN_PROGRESS | NOT BASELINED |
+| `KOS-MIND-002` | Mind validation and semantics implementation | M2 | 5 | IN_PROGRESS | NOT BASELINED |
+| `KOS-MIND-004` | Mind capability and contract integration | M2 | 6 | NOT_STARTED | NOT BASELINED |
+| `PROPOSED-NEW-MIND-003-01` | Context lifecycle model | M2 | 5 | NOT_STARTED | NOT BASELINED |
+| `PROPOSED-NEW-MIND-003-02` | Edge and Hybrid context conformance fixtures | M2 | 5 | NOT_STARTED | NOT BASELINED |
+| `KOS-MIND-005` | Mind execution and runtime integration | M5 | 6 | NOT_STARTED | NOT BASELINED |
+| `KOS-MIND-006` | Mind execution conformance and validation | M5 | 6 | NOT_STARTED | NOT BASELINED |
+| `KOS-MIND-007` | Joint Mind-to-Skill integration | M5 | 6 | NOT_STARTED | NOT BASELINED |
+| `KOS-MIND-008` | Mind production readiness and release review | M8 | 6 | NOT_STARTED | NOT BASELINED |
+
 ## Four states, kept apart
 
 | State | This repository | Decided by |
