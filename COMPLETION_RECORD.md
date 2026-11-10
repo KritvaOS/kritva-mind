@@ -51,6 +51,28 @@ The merge commit of the pull request that adds this record is not known until it
 
 None yet. The annotated tag `v0.1.0` is created only after this record's pull request is merged and the required checks on its merge commit pass. The tag message names this file and that exact merge commit. A tag object named `v0.1.0` was pushed in error on 2026-11-06 and deleted the same day (`git push origin --delete v0.1.0`); it was never a release and nothing was built on it.
 
+Post-merge facts (added 2026-11-10 after the tag was pushed; they did not exist when this record was approved, and the approved text of this file is otherwise unchanged):
+
+- Pull request 27 merged as `8cc33291919ce5599d60351d0cf181ea19cdf0ff` (parents `0722f3977ed53d793bfb3634c88933601d949e42` and `35bd997b3bd1f4bcd8aceaf4faea27b78457bb35`).
+- The annotated tag `v0.1.0` was created on that merge commit after its checks passed and pushed to `origin`. Tag object `05e2026bd1458f1e9beaddcc6ec571865044c3ca`, target `8cc33291919ce5599d60351d0cf181ea19cdf0ff`. It is the first preview tag, not a stable release, and it does not close V2-M1-MIND-001 in the program.
+- Runs on the merge commit, all success:
+
+| Workflow | Run | Conclusion |
+|---|---|---|
+| `readme-check` | 42219290822 | success |
+| `secret-scan` | 42219290906 | success |
+| `unit-tests` | 42219290884 | success |
+
+- Runs on the head of pull request 27 (`35bd997b3bd1`), all success:
+
+| Workflow | Run | Conclusion |
+|---|---|---|
+| `commit-message-check` | 42219247990 | success |
+| `pr-acceptance-gate` | 42219247256 | success |
+| `readme-check` | 42219247260 | success |
+| `secret-scan` | 42219247291 | success |
+| `unit-tests` | 42219247255 | success |
+
 ## Test runs
 
 Required checks on the pull request heads, all `success`. `pr-acceptance-gate` reports NEEDS_HUMAN as a pass by design, so a green gate is not an approval.
@@ -82,7 +104,7 @@ Gates:
 | `make check-readme` | author-run and in CI as `readme-check` (runs above) |
 | `make test-integration`, `make test-regression`, `make test`, `make lint`, `make acceptance` | NOT_IMPLEMENTED, exit 3. They are not passes and no criterion relies on them |
 
-The checks for this record's own pull request head and merge commit are recorded in the tag message, not here, because they do not exist when this is written.
+The checks for this record's own pull request head and merge commit are recorded in the tag message, not here, because they do not exist when this is written; they are listed under Release commit and tag (post-merge facts).
 
 ## Criteria disposition
 

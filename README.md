@@ -108,7 +108,7 @@ Proposed milestones, from [planning/MILESTONE.md](planning/MILESTONE.md) (genera
 | ID | Program milestone | Status recorded here | Outcome (proposed) |
 |---|---|---|---|
 | V2-M0-MIND-001 | V2-M0 FOUNDATION | PROPOSED in the program plan; baseline merged, no completion record | Repository governance baseline merged: acceptance criteria, CI checks, CODEOWNERS, AGENTS.md. |
-| V2-M1-MIND-001 | V2-M1 STUDIO | PROPOSED in the program plan; completion record added, tag pending | Mind request, context and result contract (task 001) reviewed and tagged v0.1.0. |
+| V2-M1-MIND-001 | V2-M1 STUDIO | PROPOSED in the program plan; completion record approved and merged; preview tag `v0.1.0` exists | Mind request, context and result contract (task 001) reviewed and tagged v0.1.0. |
 | V2-M2-MIND-001 | V2-M2 BUILD & ARTIFACT | PROPOSED | Schema validation, cancellation and error-path tests pass; gates implemented. |
 | V2-M5-MIND-001 | V2-M5 EXECUTION | PROPOSED | Mind results reproducible in simulated execution. |
 | V2-M8-MIND-001 | V2-M8 PRODUCTION | PROPOSED | Release and security review complete. |
@@ -132,7 +132,7 @@ A `status/` directory holds `status/status.json` (schema 2.0), which reports fac
 | Execution | the task status in [planning/TASKS.md](planning/TASKS.md); KOS-MIND-001 is IN_PROGRESS | The task owner records it |
 | Evidence | none recorded: no CI run, test result or review record is cited as task evidence | Evidence is recorded at acceptance, by the author, and checked by another reviewer |
 | Acceptance | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md), the review record and the central approvals in kritva-program | The independent reviewer and the owner, never a status report |
-| Release readiness | no release exists; the completion record for V2-M1-MIND-001 is [COMPLETION_RECORD.md](COMPLETION_RECORD.md) and the first preview tag `v0.1.0` follows its merge | The owner, through the central gates |
+| Release readiness | no stable release exists; the completion record for V2-M1-MIND-001 is [COMPLETION_RECORD.md](COMPLETION_RECORD.md) and the first preview tag `v0.1.0` exists (a preview, not a stable release) | The owner, through the central gates |
 
 ## 11. Build, Test, Regression and Validation
 
@@ -172,7 +172,7 @@ No implementation and no safety case exist at this planning stage: the repositor
 
 ## 14. Release and Versioning
 
-No release exists at the time of writing. The first preview tag `v0.1.0` is planned for after [COMPLETION_RECORD.md](COMPLETION_RECORD.md) is merged and its checks pass; git tags are the record of release state. The plan is annotated SemVer tags (`vMAJOR.MINOR.PATCH`) created only after the approved merge, with contracts versioned independently of program phases and a MAJOR version for a breaking contract change ([AGENTS.md](AGENTS.md) sections 2 and 6). A milestone closes only through an approved completion record. This README does not track release state.
+No stable release exists. The first preview tag `v0.1.0` was created after [COMPLETION_RECORD.md](COMPLETION_RECORD.md) was merged and its checks passed; it is a preview, not a stable release; git tags are the record of release state. The plan is annotated SemVer tags (`vMAJOR.MINOR.PATCH`) created only after the approved merge, with contracts versioned independently of program phases and a MAJOR version for a breaking contract change ([AGENTS.md](AGENTS.md) sections 2 and 6). A milestone closes only through an approved completion record. This README does not track release state.
 
 ## 15. Ownership and Escalation
 
