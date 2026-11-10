@@ -1,8 +1,8 @@
 # KOS-MIND-001: Mind request, context and result contract
 
-Status: IN_PROGRESS. The owner approved starting the task in chat on 2026-11-02 ("Goahead with KOS-MIND-001 implementation"); no separate approval record exists in this repository. The task carries no weight and earns no credit (see [planning/TASKS.md](../../planning/TASKS.md)). Milestone: V2-M1-MIND-001 (proposed).
+Status: ACCEPTED in this repository. The owner approved starting the task in chat on 2026-11-02 ("Goahead with KOS-MIND-001 implementation") and accepted it in chat on 2026-11-10 against [COMPLETION_RECORD.md](../../COMPLETION_RECORD.md), under the interim roles of D-047 (not independent review). Acceptance here is a repository statement: weight and credit are decided in kritva-program, where the task is baselined in v13 (D-125). Milestone: V2-M1-MIND-001 (proposed in the program plan; not closed there).
 
-Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC-001 to AC-011. None is accepted.
+Acceptance: [ACCEPTANCE_CRITERIA.md](../../ACCEPTANCE_CRITERIA.md) section 3, AC-001 to AC-011. Dispositions are in [COMPLETION_RECORD.md](../../COMPLETION_RECORD.md): AC-001, AC-002, AC-004 and AC-006 PASS; AC-003, AC-005, AC-007, AC-008, AC-009, AC-010 and AC-011 WAIVED with conditions, each covering only its deferred part. A waived criterion is not reported as met; the owner accepted the task with those waivers.
 
 ## Plan (PR sequence)
 
