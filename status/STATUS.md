@@ -2,7 +2,7 @@
 
 # Progress: KritvaOS/kritva-mind
 
-Derived snapshot of the kritva-program status view, taken 2026-11-08T12:16:37Z at baseline v12 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
+Derived snapshot of the kritva-program status view, taken 2026-11-10T13:16:33Z at baseline v13 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
 
 This repository sends facts only and earns no program credit by itself. Acceptance is decided by kritva-program, and this file never approves anything.
 
@@ -35,6 +35,7 @@ Tasks in the approved program baseline. Weight is the baseline weight. Acceptanc
 | Task | Title | Milestone | Weight | Execution | Acceptance |
 |---|---|---|---|---|---|
 | `KOS-MIND-M0-001` | Mind governance and acceptance review | M0 | 3 | COMPLETE | ACCEPTED |
+| `KOS-MIND-001` | Mind foundational contract and schema work | M1 | 5 | IN_PROGRESS | NOT ACCEPTED |
 
 ## Planned tasks (not baselined)
 
@@ -42,7 +43,6 @@ Owner-approved V2 planning scope that is not in the baseline yet. Weights are es
 
 | Task | Title | Milestone | Estimated weight | Execution | Acceptance |
 |---|---|---|---|---|---|
-| `KOS-MIND-001` | Mind foundational contract and schema work | M1 | 5 | IN_PROGRESS | NOT BASELINED |
 | `KOS-MIND-002` | Mind validation and semantics implementation | M2 | 5 | IN_PROGRESS | NOT BASELINED |
 | `KOS-MIND-004` | Mind capability and contract integration | M2 | 6 | NOT_STARTED | NOT BASELINED |
 | `PROPOSED-NEW-MIND-003-01` | Context lifecycle model | M2 | 5 | NOT_STARTED | NOT BASELINED |
@@ -56,8 +56,8 @@ Owner-approved V2 planning scope that is not in the baseline yet. Weights are es
 
 | State | This repository | Decided by |
 |---|---|---|
-| Execution | 1 of 1 baselined tasks reported COMPLETE by this repository | this repository's own report |
-| Evidence | no evidence gap recorded for this repository in the program's evidence health | the program's CI run verification |
+| Execution | 1 of 2 baselined tasks reported COMPLETE by this repository | this repository's own report |
+| Evidence | KOS-MIND-001: evidence reported (class not recorded, run 42219290884 at 8cc3329; run not yet checked against GitHub) but no central approval is recorded, so zero credit until approved | the program's CI run verification |
 | Acceptance | 3 / 53 weight (bar above) | kritva-program approvals |
 | Release readiness | NOT_READY for the program; this progress figure is not readiness | program gates |
 
