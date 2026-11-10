@@ -1,14 +1,12 @@
 {
   "baseline_tasks": {
-    "accepted_tasks": 1,
+    "accepted_tasks": 2,
     "baseline_tasks": 2,
     "rows": 8
   },
-  "evidence_notes": [
-    "KOS-MIND-001: evidence reported (class not recorded, run 42219290884 at 8cc3329; run not yet checked against GitHub) but no central approval is recorded, so zero credit until approved"
-  ],
+  "evidence_notes": [],
   "execution": {
-    "complete": 1,
+    "complete": 2,
     "tasks": 2
   },
   "foundation": {
@@ -25,7 +23,7 @@
       "rows": 0
     },
     "M1": {
-      "accepted": 0,
+      "accepted": 5,
       "baseline": 5,
       "point": 0,
       "rows": 0
@@ -52,7 +50,7 @@
   "program": {
     "baseline_approved": true,
     "baseline_version": 13,
-    "generated_at": "2026-11-10T13:16:33Z",
+    "generated_at": "2026-11-10T13:33:28Z",
     "release_state": "NOT_READY",
     "view": "https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md"
   },
@@ -61,8 +59,8 @@
   "schema_version": 2,
   "tasks": [
     {
-      "accepted": false,
-      "execution": "IN_PROGRESS",
+      "accepted": true,
+      "execution": "COMPLETE",
       "id": "KOS-MIND-001",
       "kind": "baselined",
       "milestone": "M1",

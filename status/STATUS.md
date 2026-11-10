@@ -2,15 +2,15 @@
 
 # Progress: KritvaOS/kritva-mind
 
-Derived snapshot of the kritva-program status view, taken 2026-11-10T13:16:33Z at baseline v13 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
+Derived snapshot of the kritva-program status view, taken 2026-11-10T13:33:28Z at baseline v13 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
 
 This repository sends facts only and earns no program credit by itself. Acceptance is decided by kritva-program, and this file never approves anything.
 
 ## Accepted progress
 
 ```text
-Accepted weight: 5.7%  (3 / 53 weight, 1 of 10 tasks)
-█░░░░░░░░░░░░░░░░░░░
+Accepted weight: 15.1%  (8 / 53 weight, 2 of 10 tasks)
+███░░░░░░░░░░░░░░░░░
 ```
 
 Accepted weight over total weight, where total covers completed Foundation work, baselined V2 tasks and owner-approved V2 planning tasks that are not baselined yet. Planning-only tasks are in the total and earn nothing until they are baselined and accepted. Weights are estimates.
@@ -20,11 +20,11 @@ Accepted weight over total weight, where total covers completed Foundation work,
 | Milestone | Progress | Accepted / total weight | Share |
 |---|---|---|---|
 | M0 Foundation | `████████████████████` | 3 / 3 | 100.0% |
-| M1 Studio | `░░░░░░░░░░░░░░░░░░░░` | 0 / 5 | 0.0% |
+| M1 Studio | `████████████████████` | 5 / 5 | 100.0% |
 | M2 Build & Artifact | `░░░░░░░░░░░░░░░░░░░░` | 0 / 21 | 0.0% |
 | M5 Execution | `░░░░░░░░░░░░░░░░░░░░` | 0 / 18 | 0.0% |
 | M8 Production | `░░░░░░░░░░░░░░░░░░░░` | 0 / 6 | 0.0% |
-| **All** | `█░░░░░░░░░░░░░░░░░░░` | **3 / 53** | **5.7%** |
+| **All** | `███░░░░░░░░░░░░░░░░░` | **8 / 53** | **15.1%** |
 
 Milestone dates are owner-approved planning dates in the program, not delivery commitments.
 
@@ -35,7 +35,7 @@ Tasks in the approved program baseline. Weight is the baseline weight. Acceptanc
 | Task | Title | Milestone | Weight | Execution | Acceptance |
 |---|---|---|---|---|---|
 | `KOS-MIND-M0-001` | Mind governance and acceptance review | M0 | 3 | COMPLETE | ACCEPTED |
-| `KOS-MIND-001` | Mind foundational contract and schema work | M1 | 5 | IN_PROGRESS | NOT ACCEPTED |
+| `KOS-MIND-001` | Mind foundational contract and schema work | M1 | 5 | COMPLETE | ACCEPTED |
 
 ## Planned tasks (not baselined)
 
@@ -56,9 +56,9 @@ Owner-approved V2 planning scope that is not in the baseline yet. Weights are es
 
 | State | This repository | Decided by |
 |---|---|---|
-| Execution | 1 of 2 baselined tasks reported COMPLETE by this repository | this repository's own report |
-| Evidence | KOS-MIND-001: evidence reported (class not recorded, run 42219290884 at 8cc3329; run not yet checked against GitHub) but no central approval is recorded, so zero credit until approved | the program's CI run verification |
-| Acceptance | 3 / 53 weight (bar above) | kritva-program approvals |
+| Execution | 2 of 2 baselined tasks reported COMPLETE by this repository | this repository's own report |
+| Evidence | no evidence gap recorded for this repository in the program's evidence health | the program's CI run verification |
+| Acceptance | 8 / 53 weight (bar above) | kritva-program approvals |
 | Release readiness | NOT_READY for the program; this progress figure is not readiness | program gates |
 
 Reported execution is not acceptance, and a bar is not release readiness. Refresh this file by running `tools/publish_repo_progress.py` in kritva-program and merging the resulting pull request here.
