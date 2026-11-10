@@ -1,13 +1,15 @@
 {
   "baseline_tasks": {
     "accepted_tasks": 1,
-    "baseline_tasks": 1,
-    "rows": 9
+    "baseline_tasks": 2,
+    "rows": 8
   },
-  "evidence_notes": [],
+  "evidence_notes": [
+    "KOS-MIND-001: evidence reported (class not recorded, run 42219290884 at 8cc3329; run not yet checked against GitHub) but no central approval is recorded, so zero credit until approved"
+  ],
   "execution": {
     "complete": 1,
-    "tasks": 1
+    "tasks": 2
   },
   "foundation": {
     "accepted_tasks": 0,
@@ -24,9 +26,9 @@
     },
     "M1": {
       "accepted": 0,
-      "baseline": 0,
-      "point": 5,
-      "rows": 1
+      "baseline": 5,
+      "point": 0,
+      "rows": 0
     },
     "M2": {
       "accepted": 0,
@@ -49,8 +51,8 @@
   },
   "program": {
     "baseline_approved": true,
-    "baseline_version": 12,
-    "generated_at": "2026-11-08T12:16:37Z",
+    "baseline_version": 13,
+    "generated_at": "2026-11-10T13:16:33Z",
     "release_state": "NOT_READY",
     "view": "https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md"
   },
@@ -59,6 +61,15 @@
   "schema_version": 2,
   "tasks": [
     {
+      "accepted": false,
+      "execution": "IN_PROGRESS",
+      "id": "KOS-MIND-001",
+      "kind": "baselined",
+      "milestone": "M1",
+      "title": "Mind foundational contract and schema work",
+      "weight": 5
+    },
+    {
       "accepted": true,
       "execution": "COMPLETE",
       "id": "KOS-MIND-M0-001",
@@ -66,15 +77,6 @@
       "milestone": "M0",
       "title": "Mind governance and acceptance review",
       "weight": 3
-    },
-    {
-      "accepted": false,
-      "execution": "IN_PROGRESS",
-      "id": "KOS-MIND-001",
-      "kind": "planned",
-      "milestone": "M1",
-      "title": "Mind foundational contract and schema work",
-      "weight": 5
     },
     {
       "accepted": false,
