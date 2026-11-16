@@ -193,4 +193,4 @@ No stable release exists. The first preview tag `v0.1.0` was created after [COMP
 
 ## 17. License
 
-The [LICENSE](LICENSE) file is the Apache License 2.0. Copyright (c) 2026 KritvaOS. The owner confirmed Apache-2.0 as the licence of this repository (program decision D-064, which closes PD-013), and [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 9 says the same.
+The [LICENSE](LICENSE) file is the Apache License 2.0. Copyright (c) 2026 Kritva Robotics Private Limited. The owner confirmed Apache-2.0 as the licence of this repository (program decision D-064, which closes PD-013), and [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 9 says the same.
