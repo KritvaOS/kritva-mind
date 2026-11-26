@@ -12,7 +12,7 @@
 | Lifecycle Status | PLANNING (governance baseline only) |
 | Repository Owner | Project owner (role; see section 15) |
 | Security Owner | Security Owner role ([SECURITY.md](SECURITY.md)) |
-| Architecture | Proposed only ([ARCHITECTURE.md](ARCHITECTURE.md), not approved): the architecture task KOS-MIND-001 is proposed and not approved (see [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md)) |
+| Architecture | Proposed only ([ARCHITECTURE.md](ARCHITECTURE.md) stays PROPOSED, not approved): the contract task KOS-MIND-001 was accepted by the owner on 2026-11-10 with seven criteria waived ([COMPLETION_RECORD.md](COMPLETION_RECORD.md)); acceptance is a repository statement and weight and credit are decided in kritva-program |
 | Milestones | [planning/MILESTONE.md](planning/MILESTONE.md) and [planning/MILESTONE_STATUS.md](planning/MILESTONE_STATUS.md) |
 | Tasks | [planning/TASKS.md](planning/TASKS.md) |
 | Acceptance Criteria | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) |
@@ -29,7 +29,7 @@ Kritva Mind is the part of Kritva OS V2 that will own the Mind request, context 
 
 **This repository does not own**: sensing (kritva-sense), motion (kritva-motion), skill orchestration (kritva-skill), and the platform foundation (kritva-core).
 
-**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. PROPOSED, in progress: the contract schemas under [contract/](contract/README.md) (0.1.0-draft, not accepted) and the architecture ([ARCHITECTURE.md](ARCHITECTURE.md)), for task KOS-MIND-001, which is IN_PROGRESS on the owner's instruction in [planning/TASKS.md](planning/TASKS.md). IN PROGRESS, not accepted: a standard-library contract validator with unit tests (`src/kritva_mind/`, `tests/validator/`), for task KOS-MIND-002, started on the owner's instruction before KOS-MIND-001 is accepted; it validates the draft contract and earns no credit. NOT YET IMPLEMENTED: integration and regression gates, a reasoning provider, a memory backend, status reporting and any release. Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
+**Implementation state.** IMPLEMENTED: the governance baseline only: the planning records under [planning/](planning/), the acceptance criteria, the pull-request workflows and their scripts, the commit-message checker with its tests, and the `Makefile` structure check. ACCEPTED in this repository, with waivers: task KOS-MIND-001 (owner acceptance in chat, 2026-11-10, against [COMPLETION_RECORD.md](COMPLETION_RECORD.md); preview tag `v0.1.0`; see [planning/TASKS.md](planning/TASKS.md)). Its contract schemas under [contract/](contract/README.md) are still labelled 0.1.0-draft (a preview, not a stable interface) and the architecture ([ARCHITECTURE.md](ARCHITECTURE.md)) stays PROPOSED. IN PROGRESS, not accepted: a standard-library contract validator with unit tests (`src/kritva_mind/`, `tests/validator/`), for task KOS-MIND-002, started on the owner's instruction before the KOS-MIND-001 completion record; it validates the draft contract and earns no credit. NOT YET IMPLEMENTED: integration and regression gates, a reasoning provider, a memory backend and any release. Source folders are added only when a real task needs them, so their absence is intended and is not a defect.
 
 ## 2. Position in the KritvaOS Ecosystem
 
@@ -37,7 +37,7 @@ Kritva Mind is one of the capability repositories planned for Kritva OS V2, next
 
 ## 3. Architecture
 
-A design proposal exists in [ARCHITECTURE.md](ARCHITECTURE.md); it is not approved and is not an interface other repositories may rely on. The architecture and contract are the subject of task KOS-MIND-001, which is proposed and not approved; its criteria are in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 3. Until that task is approved and accepted there is no architecture document in this repository, and nothing in the planning files is an interface that other repositories may rely on. Interfaces are intended to be contract-first and versioned independently of program phases ([AGENTS.md](AGENTS.md)). Mind describes requests and results of inference; deterministic validation of a result schema is a software property and does not show that a result is correct, safe or fit to command a robot.
+A design proposal exists in [ARCHITECTURE.md](ARCHITECTURE.md); it is not approved and is not an interface other repositories may rely on. The architecture and contract are the subject of task KOS-MIND-001, which the owner accepted on 2026-11-10 with seven criteria waived (see [COMPLETION_RECORD.md](COMPLETION_RECORD.md)); its criteria are in [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) section 3. The architecture document stays PROPOSED, the contract is a 0.1.0-draft preview, and nothing in the planning files is an interface that other repositories may rely on. Interfaces are intended to be contract-first and versioned independently of program phases ([AGENTS.md](AGENTS.md)). Mind describes requests and results of inference; deterministic validation of a result schema is a software property and does not show that a result is correct, safe or fit to command a robot.
 
 ## 4. Documents to Read First
 
@@ -46,7 +46,7 @@ Role first, then the status the document declares. A label is a role, not an app
 | # | Document | Label, status | What it answers |
 |---|---|---|---|
 | 1 | [AGENTS.md](AGENTS.md) | AUTHORITATIVE for the rules for agents and contributors in this repository; in force | Scope, boundaries, commits, tests, tags |
-| 2 | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) | AUTHORITATIVE for the acceptance criteria of KOS-MIND-001; PROPOSED (not accepted, weighted or credited) | What the first task must satisfy |
+| 2 | [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) | AUTHORITATIVE for the acceptance criteria of KOS-MIND-001; the task was accepted on 2026-11-10 with seven criteria waived ([COMPLETION_RECORD.md](COMPLETION_RECORD.md)); the file's own header still reads proposed and is not edited here; no weight or credit here | What the first task satisfied or had waived |
 | 3 | [planning/TASKS.md](planning/TASKS.md) | AUTHORITATIVE for this repository's task inventory (proposed registry, PD-004) | Which tasks exist and their status |
 | 4 | [planning/MILESTONE.md](planning/MILESTONE.md) | REFERENCE: generated from kritva-program; dates are proposed targets, not approved | Proposed milestones |
 | 5 | [planning/MILESTONE_STATUS.md](planning/MILESTONE_STATUS.md) | REFERENCE: the repository's own record, as of the governance baseline commit | Milestone status and evidence |
@@ -118,7 +118,7 @@ The target dates are in [planning/MILESTONE.md](planning/MILESTONE.md); they are
 ## 9. Tasks and Acceptance Criteria
 
 - **Where tasks live.** [planning/TASKS.md](planning/TASKS.md) lists the tasks (registry type `repo-tasks-md`, prefix `KOS-MIND`); the proposed task registry is program decision PD-004. Tasks are planning inventory with no weight and no credit until a separately approved baseline amendment.
-- **Acceptance.** [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) holds the criteria and test gates; they are proposed until the owner approves the task. Unimplemented gates are reported as NOT_IMPLEMENTED and are never counted as a pass. [planning/REVIEW_CHECKLIST.md](planning/REVIEW_CHECKLIST.md) is the review list.
+- **Acceptance.** [ACCEPTANCE_CRITERIA.md](ACCEPTANCE_CRITERIA.md) holds the criteria and test gates; KOS-MIND-001 was accepted by the owner on 2026-11-10 against them, with seven criteria waived in [COMPLETION_RECORD.md](COMPLETION_RECORD.md), and a later task needs its own approval. Unimplemented gates are reported as NOT_IMPLEMENTED and are never counted as a pass. [planning/REVIEW_CHECKLIST.md](planning/REVIEW_CHECKLIST.md) is the review list.
 - Work is not accepted because a commit or merged pull request exists, a check is green or a milestone says it is proposed. Interface and boundary changes, safety and security behaviour and dependency changes need human review ([AGENTS.md](AGENTS.md)).
 
 ## 10. Status Reporting and Program Integration
