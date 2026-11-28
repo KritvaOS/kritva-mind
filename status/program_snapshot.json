@@ -49,9 +49,9 @@
   },
   "program": {
     "baseline_approved": true,
-    "baseline_version": 13,
-    "generated_at": "2026-11-10T13:33:28Z",
-    "release_state": "NOT_READY",
+    "baseline_version": 17,
+    "generated_at": "2026-11-28T07:00:05Z",
+    "release_state": "READY",
     "view": "https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md"
   },
   "repo": "Mind",
