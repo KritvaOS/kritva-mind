@@ -2,7 +2,7 @@
 
 # Progress: KritvaOS/kritva-mind
 
-Derived snapshot of the kritva-program status view, taken 2026-11-10T13:33:28Z at baseline v13 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
+Derived snapshot of the kritva-program status view, taken 2026-11-28T07:00:05Z at baseline v17 (APPROVED). It can lag the program. The program view is the record: [https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md](https://github.com/KritvaOS/kritva-program/blob/main/v2/tracking/STATUS_VIEW.md).
 
 This repository sends facts only and earns no program credit by itself. Acceptance is decided by kritva-program, and this file never approves anything.
 
@@ -59,6 +59,6 @@ Owner-approved V2 planning scope that is not in the baseline yet. Weights are es
 | Execution | 2 of 2 baselined tasks reported COMPLETE by this repository | this repository's own report |
 | Evidence | no evidence gap recorded for this repository in the program's evidence health | the program's CI run verification |
 | Acceptance | 8 / 53 weight (bar above) | kritva-program approvals |
-| Release readiness | NOT_READY for the program; this progress figure is not readiness | program gates |
+| Release readiness | READY for the program; this progress figure is not readiness | program gates |
 
 Reported execution is not acceptance, and a bar is not release readiness. Refresh this file by running `tools/publish_repo_progress.py` in kritva-program and merging the resulting pull request here.
